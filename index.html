@@ -4,112 +4,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller Mecánico El Campeón</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS (CSS) */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        
-        /* Encabezado */
-        header { background-color: #1a252f; color: white; padding: 2rem; text-align: center; border-bottom: 5px solid #e74c3c; }
-        header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
-        header p { font-size: 1.1rem; color: #bdc3c7; margin-top: 10px; }
-
-        /* Contenedor */
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-
-        /* Título Sección */
-        .catalogo-titulo { text-align: center; margin: 40px 0 10px 0; color: #2c3e50; }
-        .subtitulo { text-align: center; color: #7f8c8d; margin-bottom: 30px; }
-        
-        /* Grilla de productos */
-        .grilla-aceites {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 10px;
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            --color-primario: #2c3e50; /* Azul oscuro profesional */
+            --color-acento: #e67e22; /* Naranja energético */
+            --degradado-fondo: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
 
-        /* Tarjeta */
-        .producto {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.2s ease-in-out;
+        html {
+            scroll-behavior: smooth; /* ¡Importante! Esto hace que el desplazamiento al hacer clic sea suave */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden; /* Evita scroll horizontal indeseado */
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+
+        /* --- SECCIÓN 1: ENCABEZADO ANIMADO --- */
+        .hero-section {
+            /* Animación de degradado en el fondo */
+            background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite; /* El fondo cambia de color solo */
+            
+            color: white;
+            padding: 4rem 2rem;
             text-align: center;
+            min-height: 60vh; /* Ocupa el 60% de la altura de la pantalla */
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
+            position: relative;
         }
-        .producto:hover { transform: scale(1.02); }
 
-        /* Imagen del producto */
-        .producto img {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .logo-placeholder {
+            /* Si tienes un logo real, reemplaza este DIV por una etiqueta <img src="tu-logo.png"> */
+            width: 120px;
+            height: 120px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 4px solid var(--color-acento);
+            color: var(--color-primario);
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(230, 126, 34, 0.5);
+        }
+        
+        .hero-section h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        /* --- SECCIÓN 2: BOTONES DE NAVEGACIÓN RÁPIDA --- */
+        .nav-rapida {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            margin-top: -50px; /* Para que se superponga un poco al header */
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap; /* Para que se adapte a celulares */
+        }
+
+        .btn-nav {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--color-primario);
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; /* Animación suave al pasar el mouse */
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid var(--color-acento);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-10px); /* Se levanta al pasar el mouse */
+            box-shadow: 0 15px 30px rgba(230, 126, 34, 0.4);
+            background-color: var(--color-acento);
+            color: white;
+            border-bottom-color: white;
+        }
+        .btn-nav span { font-size: 1.5rem; margin-right: 10px; }
+
+        /* --- ESTILOS DE LAS SECCIONES --- */
+        .seccion-contenido {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .titulo-seccion {
+            text-align: center;
+            color: var(--color-primario);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .titulo-seccion::after {
+            /* La línea naranja debajo del título */
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--color-acento);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- CATÁLOGO DE ACEITES (Estilo Lista Moderna) --- */
+        .lista-aceites {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .item-aceite {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: flex;
+            /* En celular se ve en columna, en PC en fila */
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+        
+        /* Media query para PC: poner foto al lado del texto */
+        @media (min-width: 768px) {
+           .item-aceite { flex-direction: row; align-items: center; }
+           .item-aceite img { width: 40% !important; height: 250px !important; }
+           .info-aceite { padding: 40px !important; }
+        }
+
+        .item-aceite:hover { transform: scale(1.02); }
+
+        .item-aceite img {
             width: 100%;
-            height: 220px;
-            object-fit: cover; /* Mantiene la foto bonita */
-            border-bottom: 1px solid #eee;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--color-acento);
         }
 
-        .info-producto { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .info-producto h3 { margin: 0 0 10px 0; font-size: 1.2rem; color: #2c3e50; }
-        .descripcion { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
-        .precio { color: #e74c3c; font-weight: bold; font-size: 1.4rem; margin: 0; }
+        .info-aceite { padding: 25px; flex: 1; }
+        .info-aceite h3 { margin: 0 0 10px 0; font-size: 1.5rem; color: var(--color-primario); }
+        .precio-grande {
+            color: var(--color-acento);
+            font-weight: 800;
+            font-size: 2rem;
+            display: block;
+            margin-top: 15px;
+        }
 
-        /* Pie de página */
-        footer { background-color: #2c3e50; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
-        .contact-info p { margin: 10px 0; font-size: 1.1rem; }
-        .contact-info span { font-weight: bold; color: #3498db; }
+        /* --- PIE DE PÁGINA --- */
+        footer {
+            background: var(--color-primario);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .telefonos-footer { font-size: 1.2rem; }
+        .telefonos-footer p span { color: var(--color-acento); font-weight: bold;}
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>TALLER MECÁNICO [NOMBRE]</h1> 
-        <p>Servicio Integral y Venta de Lubricantes</p>
+    <header class="hero-section">
+        <div class="logo-placeholder">LOGO</div> 
+        
+        <h1>TALLER [NOMBRE DE TU PADRE]</h1>
+        <p>Mecánica Integral, Lubricación y Servicio de Confianza.</p>
+        <p>📍 Tu dirección aquí, Ciudad</p>
     </header>
 
-    <div class="container">
+    <nav class="nav-rapida">
+        <a href="#seccion-aceites" class="btn-nav"><span>🛢️</span> Ver Aceites</a>
+        <a href="#seccion-parches" class="btn-nav"><span>🚗</span> Parches Moto/Auto</a>
+        <a href="#seccion-alineacion" class="btn-nav"><span>🔧</span> Alineación y Balanceo</a>
+    </nav>
+
+    <section id="seccion-aceites" class="seccion-contenido">
+        <h2 class="titulo-seccion">Catálogo de Lubricantes</h2>
         
-        <h2 class="catalogo-titulo">Nuestros Aceites</h2>
-        <p class="subtitulo">Lo mejor para el cuidado de tu motor</p>
-
-        <div class="grilla-aceites">
+        <div class="lista-aceites">
             
-            <div class="producto">
-                <img src="aceite1.jpg" alt="Aceite Motor">
-                <div class="info-producto">
-                    <h3>Aceite Sintético 5W-30</h3>
-                    <p class="descripcion">Ideal para autos nuevos. Protección total.</p>
-                    <p class="precio">$12.000</p>
+            <div class="item-aceite">
+                <img src="aceite1.jpg" alt="Aceite 1"> 
+                <div class="info-aceite">
+                    <h3>Aceite Sintético Premium 5W-30</h3>
+                    <p>Ideal para vehículos modernos. Máxima protección y rendimiento en frío y calor. Marca reconocida.</p>
+                    <span class="precio-grande">$15.500 / Litro</span>
                 </div>
             </div>
 
-            <div class="producto">
-                <img src="aceite2.jpg" alt="Aceite Motor">
-                <div class="info-producto">
-                    <h3>Aceite Semi-Sintético</h3>
-                    <p class="descripcion">Alto rendimiento para todo clima.</p>
-                    <p class="precio">$9.500</p>
+            <div class="item-aceite">
+                <img src="aceite2.jpg" alt="Aceite 2">
+                <div class="info-aceite">
+                    <h3>Aceite Semi-Sintético 10W-40</h3>
+                    <p>Excelente opción para motores con cierto kilometraje. Buen equilibrio entre protección y costo.</p>
+                    <span class="precio-grande">$9.800 / Litro</span>
                 </div>
             </div>
-
-            <div class="producto">
-                <img src="aceite3.jpg" alt="Liquido">
-                <div class="info-producto">
-                    <h3>Líquido Refrigerante</h3>
-                    <p class="descripcion">Evita el sobrecalentamiento.</p>
-                    <p class="precio">$5.000</p>
+            
+             <div class="item-aceite">
+                <img src="refrigerante.jpg" alt="Refrigerante">
+                <div class="info-aceite">
+                    <h3>Líquido Refrigerante / Anticongelante</h3>
+                    <p>Protege el motor del sobrecalentamiento y la corrosión. Listo para usar.</p>
+                    <span class="precio-grande">$5.000 / Bidón 5L</span>
                 </div>
             </div>
-
             </div>
-    </div>
+        </section>
+
+
+    <section id="seccion-parches" class="seccion-contenido" style="background: white;">
+        <h2 class="titulo-seccion">Gomería y Parches</h2>
+        <p style="text-align: center; font-size: 1.2rem;">
+            Reparación rápida de pinchaduras para autos y motos.
+            <br>Utilizamos materiales de alta calidad para garantizar tu seguridad en la ruta.
+        </p>
+        </section>
+
+
+    <section id="seccion-alineacion" class="seccion-contenido">
+        <h2 class="titulo-seccion">Alineación y Balanceo</h2>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); max-width: 400px;">
+                <h3>🎯 Alineación 3D</h3>
+                <p>Evita el desgaste irregular de tus cubiertas y mejora el manejo. Tecnología de última generación.</p>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); max-width: 400px;">
+                <h3>⚖️ Balanceo Computarizado</h3>
+                <p>Elimina vibraciones en el volante a altas velocidades. Confort de marcha asegurado.</p>
+            </div>
+        </div>
+    </section>
+
 
     <footer>
-        <h3>Contáctanos</h3>
-        <div class="contact-info">
-            <p><span>📞 Teléfono:</span> (011) 1234-5678</p>
-            <p><span>📍 Ubicación:</span> Calle del Taller 123, Ciudad</p>
-            <p>Horario: Lunes a Viernes 9:00 - 18:00hs</p>
+        <h2>Contáctanos</h2>
+        <div class="telefonos-footer">
+            <p>📞 Fijo del Taller: <span>(011) 4444-5555</span></p>
+            <p>📱 WhatsApp / Celular: <span>+54 9 11 2233-4455</span></p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Horario de atención: Lunes a Viernes 8hs a 18hs.</p>
         </div>
     </footer>
 
