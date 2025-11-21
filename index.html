@@ -11,9 +11,9 @@
             --bg-profundo: #050505;
             --bg-tarjeta: #121212;
             --texto-blanco: #ffffff;
-            --texto-gris: #b3b3b3;
+            --texto-gris: #dddddd;
             --acento-amarillo: #ffd700;
-            --acento-violeta: #c026d3;
+            --acento-violeta: #9d4edd;
             --acento-rojo: #ff4757;
             --acento-verde: #00e676;
         }
@@ -25,130 +25,142 @@
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             overflow-x: hidden; position: relative;
+            padding-bottom: 80px; /* Espacio para el footer */
         }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; }
 
+        /* --- ANIMACIONES DE ENTRADA --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animado { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
         /* --- FONDO ANIMADO --- */
-        .fondo-animado { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); overflow: hidden; }
-        .luz { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3; animation: flotar 20s infinite alternate ease-in-out; }
-        .luz-1 { top: 10%; left: 20%; width: 400px; height: 400px; background: var(--acento-amarillo); animation-duration: 25s; }
-        .luz-2 { bottom: 20%; right: 10%; width: 500px; height: 500px; background: var(--acento-violeta); animation-delay: -5s; }
-        @keyframes flotar { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(50px, 25px) scale(1.2); } }
+        .fondo-animado { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #100a14 0%, #000000 100%); overflow: hidden; }
+        .luz { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: flotar 15s infinite alternate ease-in-out; }
+        .luz-1 { top: 5%; left: 10%; width: 300px; height: 300px; background: var(--acento-amarillo); animation-duration: 20s; }
+        .luz-2 { bottom: 15%; right: 5%; width: 400px; height: 400px; background: var(--acento-violeta); animation-delay: -5s; }
+        @keyframes flotar { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 30px) scale(1.1); } }
 
-        /* --- EFECTO VIDRIO --- */
-        .panel-vidrio { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; }
+        /* --- CLASES DE UTILIDAD --- */
+        .panel-vidrio { 
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
 
-        /* --- HEADER (ADAPTADO A CELULAR) --- */
+        /* --- HEADER (DISEÑO ESPECÍFICO BOCETO 1) --- */
         .hero-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 30px 5%; flex-wrap: wrap; gap: 20px;
+            display: flex; align-items: flex-start; justify-content: space-between;
+            padding: 30px 20px; gap: 15px; margin-bottom: 20px;
         }
-        .header-left { flex: 2; min-width: 300px; z-index: 2; }
         
-        .subtitulo-top { font-size: 0.9rem; color: var(--acento-amarillo); font-weight: 600; letter-spacing: 2px; display: block; margin-bottom: 5px;}
+        .header-texto { flex: 1; padding-top: 10px; } /* Texto a la izquierda */
+        
+        .subtitulo-top { font-size: 0.85rem; color: var(--acento-amarillo); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 5px;}
         .titulo-principal {
-            font-size: 2.8rem; line-height: 1; margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-size: 2.2rem; line-height: 1; margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #ccc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
         }
         
-        .info-bloque-header { padding: 20px; border-left: 3px solid var(--acento-amarillo); margin-top: 20px; }
-        .dato-contacto { font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .servicios-lista { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .servicios-destacados { font-size: 1.1rem; font-weight: 700; color: white; margin-bottom: 5px; display: block;}
-        .servicios-resto { color: var(--texto-gris); line-height: 1.4; font-size: 0.9rem; }
+        /* Info contacto en header */
+        .mini-contacto { font-size: 0.85rem; color: #aaa; margin-top: 10px; border-left: 3px solid var(--acento-amarillo); padding-left: 10px; }
+        .mini-contacto div { margin-bottom: 4px; }
 
-        .header-right { flex: 1; display: flex; justify-content: flex-end; min-width: 200px; }
-        .logo-cuadrado {
-            width: 350px; height: 350px; object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+        .header-logo { flex: 0 0 140px; } /* Logo a la derecha, ancho fijo */
+        .logo-img { 
+            width: 140px; height: 140px; object-fit: contain; 
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
             animation: aparecerLogo 1s ease-out;
         }
-        @keyframes aparecerLogo { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); }}
+        @keyframes aparecerLogo { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); }}
 
         /* --- SECCIONES GENERALES --- */
-        .contenedor-general { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
-        .titulo-seccion-principal { font-size: 2rem; text-align: center; margin-bottom: 30px; color: var(--acento-violeta); }
-
-        /* --- ALINEACIÓN --- */
-        .layout-alineacion { display: flex; gap: 20px; align-items: center; flex-direction: column; } /* En celular primero imagen, luego texto */
-        .img-alineacion-container { width: 100%; }
-        .img-alineacion-container img { width: 100%; border-radius: 15px; border: 1px solid #333; }
-        .texto-alineacion-panel { width: 100%; padding: 20px; box-sizing: border-box; }
-        .texto-alineacion-panel h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--acento-amarillo); }
-
-        /* --- BANNERS (CORREGIDO: PEQUEÑOS Y CON TEXTO VISIBLE) --- */
-        .cabecera-categoria { 
-            position: relative; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            margin-bottom: 25px; 
-            border: 1px solid #333; 
-            height: 160px; /* ALTURA FIJA EN PC */
-        }
+        .contenedor-general { max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px; }
         
-        .cabecera-categoria img { 
-            width: 100%; height: 100%; 
-            object-fit: cover; object-position: center; /* Centra la imagen */
-            opacity: 0.7; display: block;
-        }
-
-        /* EL TEXTO ENCIMA DEL BANNER */
-        .texto-cabecera { 
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; justify-content: center; /* Centrado vertical */
-            padding: 0 30px;
-            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%); 
-            z-index: 10;
-        }
-        .texto-cabecera h2 { font-size: 2rem; margin: 0; text-shadow: 2px 2px 4px black; line-height: 1.1; }
-        .texto-cabecera p { font-size: 1rem; color: #eee; margin-top: 5px; }
-
-        /* --- GRILLA DE PRODUCTOS (Optimizado para Celular) --- */
-        .grilla { 
-            display: grid; 
-            /* Truco: minmax(160px) permite 2 columnas en celulares normales */
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-            gap: 15px; 
-        }
+        /* --- ALINEACIÓN (DISEÑO VERTICAL BOCETO 1) --- */
+        .alineacion-box { display: flex; flex-direction: column; gap: 0; border-radius: 20px; overflow: hidden; border: 1px solid #333; }
         
-        .card { background: var(--bg-tarjeta); border-radius: 12px; overflow: hidden; border: 1px solid #333; display: flex; flex-direction: column; }
-        .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; }
+        .alineacion-img { width: 100%; height: 200px; overflow: hidden; position: relative; }
+        .alineacion-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .alineacion-info { padding: 25px; }
+        .alineacion-titulo { font-size: 1.5rem; color: var(--acento-amarillo); margin-bottom: 10px; font-weight: 800; }
+        .alineacion-desc { font-size: 1rem; color: #ccc; line-height: 1.5; margin-bottom: 20px; }
+        
+        /* PRECIO DESTACADO (LO QUE PEDISTE) */
+        .precio-destacado-box {
+            background: rgba(255, 215, 0, 0.1); border: 1px solid var(--acento-amarillo);
+            border-radius: 10px; padding: 15px; text-align: center;
+        }
+        .lbl-precio { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #aaa; }
+        .valor-precio { display: block; font-size: 1.8rem; font-weight: 900; color: var(--acento-amarillo); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+
+        /* --- BANNERS (ESTILO TIRA REDONDEADA BOCETO 2) --- */
+        .banner-tira { 
+            position: relative; width: 100%; height: 140px; /* Altura tira */
+            border-radius: 20px; overflow: hidden; margin: 40px 0 25px 0;
+            border: 1px solid #333; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .banner-tira img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .banner-texto { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; padding-left: 30px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%);
+        }
+        .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 2px 2px 5px black; }
+        .banner-texto p { color: #ddd; font-size: 0.9rem; }
+
+        /* --- GRILLA PRODUCTOS (2 COLUMNAS BOCETO 2) --- */
+        .grilla { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; } /* Forzamos 2 columnas */
+        
+        .card { 
+            background: var(--bg-tarjeta); border-radius: 15px; overflow: hidden; border: 1px solid #333; 
+            display: flex; flex-direction: column; 
+        }
+        .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; padding: 10px; display: flex; align-items: center; justify-content: center; }
         .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .info { padding: 15px; }
-        .info h3 { font-size: 0.9rem; color: white; margin-bottom: 5px; letter-spacing: 0.5px; line-height: 1.3; }
-        .precio { font-size: 1.2rem; font-weight: 800; display: block; margin-top: 8px; }
+        .info { padding: 12px; }
+        .info h3 { font-size: 0.9rem; color: white; margin-bottom: 5px; line-height: 1.2; height: 35px; overflow: hidden; } /* Altura fija titulo */
+        .precio { font-size: 1.2rem; font-weight: 800; display: block; margin-top: 5px; }
 
-        /* Tarjetas Neumáticos */
-        .card-neumatico { background: #0f0f0f; border-radius: 12px; padding: 15px; border: 1px solid #333; border-left: 4px solid var(--acento-verde); position: relative; overflow: hidden; }
-        .card-neumatico::before { content: "🛞"; position: absolute; right: -5px; bottom: -5px; font-size: 4rem; opacity: 0.1; filter: grayscale(100%); }
-        .titulo-neumatico { font-size: 1rem; font-weight: 800; color: white; margin-bottom: 5px; }
-        .desc-neumatico { font-size: 0.8rem; color: #aaa; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px;}
-        .precio-neumatico { font-size: 1.3rem; font-weight: 800; color: var(--acento-verde); display: block; text-align: right;}
+        /* --- TARJETAS NEUMÁTICOS (VERDES) --- */
+        .card-neumatico { 
+            background: #0f0f0f; border-radius: 15px; padding: 15px; border: 1px solid #333; 
+            border-left: 4px solid var(--acento-verde); position: relative; overflow: hidden;
+        }
+        .card-neumatico::before { content: "🛞"; position: absolute; right: -5px; bottom: -5px; font-size: 3rem; opacity: 0.1; filter: grayscale(100%); }
+        .titulo-neu { font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 5px; }
+        .desc-neu { font-size: 0.75rem; color: #aaa; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 5px;}
+        .precio-neu { font-size: 1.2rem; font-weight: 800; color: var(--acento-verde); text-align: right;}
+
+        /* --- FOOTER (BARRA ABAJO) --- */
+        footer {
+            background: #111; border-top: 1px solid var(--acento-violeta);
+            padding: 20px; text-align: center; color: #888; font-size: 0.9rem;
+            margin-top: 60px;
+        }
+        footer strong { color: white; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        footer span { display: block; margin-bottom: 5px; }
 
         /* --- MENÚ FLOTANTE --- */
         .flotante-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
-        .btn-menu-principal { width: 55px; height: 55px; border-radius: 15px; font-size: 24px; background: linear-gradient(135deg, var(--acento-amarillo), #f39c12); border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); }
+        .btn-menu-principal { width: 55px; height: 55px; border-radius: 15px; font-size: 24px; background: linear-gradient(135deg, var(--acento-amarillo), #f39c12); border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); animation: flotarBtn 3s infinite ease-in-out; }
+        @keyframes flotarBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
         .menu-opciones { margin-bottom: 10px; transform: translateY(10px) scale(0.9); opacity: 0; pointer-events: none; transition: 0.3s; }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
         .menu-vidrio { background: rgba(0,0,0,0.9); border: 1px solid #333; border-radius: 15px; min-width: 200px; }
         .menu-opciones a { padding: 12px 15px; color: white; text-decoration: none; display: block; border-bottom: 1px solid #222; font-size: 0.9rem; }
 
-        /* --- MEDIA QUERY: CELULARES (AJUSTES FINOS) --- */
-        @media (max-width: 768px) {
-            .hero-header { flex-direction: column-reverse; text-align: center; padding: 30px 15px; }
-            .titulo-principal { font-size: 2.2rem; }
-            .logo-cuadrado { width: 180px; height: 180px; margin-bottom: 10px; }
-            .header-left { width: 100%; }
-            
-            /* Banner aún más pequeño en celular */
-            .cabecera-categoria { height: 120px; }
-            .texto-cabecera { padding: 0 15px; }
-            .texto-cabecera h2 { font-size: 1.4rem; }
-            .texto-cabecera p { font-size: 0.8rem; }
-
-            .contenedor-general { margin: 40px auto; padding: 0 15px; }
-            .titulo-seccion-principal { font-size: 1.8rem; margin-bottom: 30px; }
+        /* AJUSTES ESPECÍFICOS PARA PANTALLAS MUY CHICAS */
+        @media (max-width: 380px) {
+            .titulo-principal { font-size: 1.8rem; }
+            .logo-img { width: 110px; height: 110px; }
         }
     </style>
 </head>
@@ -156,105 +168,99 @@
 
     <div class="fondo-animado"><div class="luz luz-1"></div><div class="luz luz-2"></div></div>
 
-    <header class="hero-header">
-        <div class="header-left">
-            <span class="subtitulo-top">TALLER • LUBRICENTRO • GOMERÍA</span>
+    <header class="hero-header animado">
+        <div class="header-texto">
+            <span class="subtitulo-top">TALLER • GOMERÍA</span>
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
-            
-            <div class="info-bloque-header panel-vidrio">
-                <div class="dato-contacto"><span style="color: var(--acento-amarillo);">📞</span><strong>2995 942 834  /  299 471 6353</strong></div>
-                <div class="dato-contacto"><span style="color: var(--acento-amarillo);">📍</span><span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5</span></div>
-                <div class="servicios-lista">
-                    <span class="servicios-destacados">Cubiertas, Filtros y Servicio</span>
-                    <p class="servicios-resto">Alineamiento • Balanceo • Gomería • Rodamientos • Suspensión • Tren Delantero • Cambio de Filtros y Aceite.</p>
-                </div>
+            <div class="mini-contacto">
+                <div>📞 2995 942 834</div>
+                <div>📍 Rincón de los Sauces</div>
             </div>
         </div>
-        <div class="header-right">
-            <img src="LOGO BLANCO.png" alt="Logo" class="logo-cuadrado">
+        <div class="header-logo">
+            <img src="LOGO BLANCO.png" alt="Logo" class="logo-img">
         </div>
     </header>
 
-    <section class="contenedor-general" id="alineacion">
-        <h2 class="titulo-seccion-principal" style="color: var(--acento-violeta);">SERVICIOS DE TALLER</h2>
-        <div class="layout-alineacion">
-            <div class="img-alineacion-container">
+    <section class="contenedor-general animado delay-1" id="alineacion">
+        <div class="alineacion-box panel-vidrio">
+            <div class="alineacion-img">
                 <img src="Alineamiento y balanceo/alineacion.jpg" alt="Alineación">
             </div>
-            <div class="texto-alineacion-panel panel-vidrio">
-                <h3>Alineación y Balanceo</h3>
-                <p>En Ultima Estación realizamos este servicio fundamental para el cuidado de tu vehículo.</p>
-                <p>✅ Correcta pisada del neumático.<br>✅ Estabilidad en el manejo.<br>✅ Eliminación de vibraciones.</p>
-                <p style="margin-top: 15px; color: white; font-weight: bold;">¡Trae tu vehículo y lo revisamos!</p>
+            <div class="alineacion-info">
+                <h3 class="alineacion-titulo">Alineación y Balanceo</h3>
+                <p class="alineacion-desc">
+                    Servicio especializado realizado en taller. Aseguramos la correcta pisada y estabilidad de tu vehículo sin vueltas.
+                </p>
+                <div class="precio-destacado-box">
+                    <span class="lbl-precio">Precio desde</span>
+                    <span class="valor-precio">$25.000</span> </div>
             </div>
         </div>
     </section>
-
-    <section class="contenedor-general" id="neumaticos">
-        <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-verde);">
-            <img src="Banners/BANNER-NEUMATICOS.png" alt="Portada Neumáticos">
-            <div class="texto-cabecera">
+    
+    <section class="contenedor-general animado delay-2" id="neumaticos">
+        <div class="banner-tira" style="border-color: var(--acento-verde);">
+            <img src="Banners/BANNER-NEUMATICOS.png" alt="Neumáticos">
+            <div class="banner-texto">
                 <h2 style="color: var(--acento-verde);">NEUMÁTICOS</h2>
-                <p>Autos, Camionetas y Motos.</p>
+                <p>Venta y colocación</p>
             </div>
         </div>
+        
         <div class="grilla">
-            <div class="card-neumatico"><div class="titulo-neumatico">175 65 R14 - KPATOS</div><div class="desc-neumatico">Incluye Balanceo + Válvula</div><div class="precio-neumatico">$115.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">185 65 R15 Aderenz'a</div><div class="desc-neumatico">Incluye Balanceo & Válvula</div><div class="precio-neumatico">$120.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">205 55 R16 - Firemax</div><div class="desc-neumatico">Incluye Balanceo & Válvula</div><div class="precio-neumatico">$135.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">195 55 R15 Sunset 85V</div><div class="desc-neumatico">Incluye Balanceo + Válvula Nueva</div><div class="precio-neumatico">$135.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">185 60 R14. Sunset 82H</div><div class="desc-neumatico">Incluye Balanceo + Válvula</div><div class="precio-neumatico">$120.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">2.75 R14 Moto 110</div><div class="desc-neumatico">Cubierta de Moto</div><div class="precio-neumatico">$54.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">185/65R15 Ling Long</div><div class="desc-neumatico">Incluye Balanceo + Válvula</div><div class="precio-neumatico">$120.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">175 70 R13 Ling Long H/T</div><div class="desc-neumatico">Incluye Balanceo y Válvula</div><div class="precio-neumatico">$115.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">225 70 R17 Ling Long H/T</div><div class="desc-neumatico">Incluye Balanceo + Válvula</div><div class="precio-neumatico">$180.000</div></div>
-            <div class="card-neumatico"><div class="titulo-neumatico">185 65 R14 KPATOS</div><div class="desc-neumatico">Incluye Balanceo + Válvula</div><div class="precio-neumatico">$123.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">175 65 R14 KPATOS</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$115.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">185 65 R15 Aderenz'a</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">205 55 R16 Firemax</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">195 55 R15 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">185 60 R14 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div></div>
+            <div class="card-neumatico"><div class="titulo-neu">Moto 2.75 R14</div><div class="desc-neu">Cubierta Moto</div><div class="precio-neu">$54.000</div></div>
         </div>
     </section>
 
-    <div class="contenedor-general" id="aceites">
-        <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-amarillo);">
-            <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Portada Aceites">
-            <div class="texto-cabecera">
+    <section class="contenedor-general animado delay-3" id="aceites">
+        <div class="banner-tira" style="border-color: var(--acento-amarillo);">
+            <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Aceites">
+            <div class="banner-texto">
                 <h2 style="color: var(--acento-amarillo);">ACEITES MOTOR</h2>
-                <p>Lubricantes minerales y sintéticos.</p>
+                <p>Minerales y Sintéticos</p>
             </div>
         </div>
-        <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 1</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 2</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 3</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 4</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 5</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 6</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 7</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 8</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
-        </div>
-    </div>
 
-    <div class="contenedor-general" id="atf">
-        <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-rojo);">
-            <img src="Banners/BANNER-ACEITE-ATF.png" alt="Portada ATF">
-            <div class="texto-cabecera">
+        <div class="grilla">
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="1"></div><div class="info"><h3>ACEITE 1</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>ACEITE 2</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>ACEITE 3</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>ACEITE 4</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>ACEITE 5</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>ACEITE 6</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
+        </div>
+    </section>
+
+    <section class="contenedor-general animado delay-3" id="atf">
+        <div class="banner-tira" style="border-color: var(--acento-rojo);">
+            <img src="Banners/BANNER-ACEITE-ATF.png" alt="ATF">
+            <div class="banner-texto">
                 <h2 style="color: var(--acento-rojo);">ACEITES ATF</h2>
-                <p>Transmisión automática y dirección.</p>
+                <p>Transmisión y Dirección</p>
             </div>
         </div>
+
         <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 2</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 3</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 4</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 5</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 6</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 7</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 8</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 9</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 10</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 11</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 12</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
         </div>
-    </div>
+    </section>
+
+    <footer>
+        <strong>ULTIMA ESTACIÓN</strong>
+        <span>Rincón de Los Sauces, Neuquén</span>
+        <span>📞 299 594 2834 / 299 471 6353</span>
+        <span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5</span>
+        <p style="margin-top: 10px; font-size: 0.7rem; opacity: 0.5;">© 2024 Todos los derechos reservados</p>
+    </footer>
 
     <div class="flotante-container">
         <div class="menu-opciones menu-vidrio" id="menuDesplegable">
