@@ -8,136 +8,238 @@
     <style>
         /* --- PALETA DE COLORES --- */
         :root {
-            --bg-fondo: #120a2e;
+            --bg-fondo: #100a1e;
             --bg-card: #1a1a1a;
             --borde-card: #333;
             
             /* Acentos */
-            --acento-violeta: #9d4edd;
             --acento-amarillo: #ffd700;
+            --acento-violeta: #9d4edd;
             --acento-verde: #00e676;
             --acento-rojo: #ff4757;
-            --acento-azul: #00f3ff; /* AZUL NEÓN PARA FILTROS */
+            --acento-azul: #00f3ff;
+            --acento-naranja: #ff9f43;
+            --whatsapp-green: #25d366;
             
             --texto-blanco: #ffffff;
-            --texto-gris: #bbbbbb;
+            --texto-gris: #dddddd;
         }
 
         html { scroll-behavior: smooth; height: 100%; }
         
         body {
-            background: linear-gradient(135deg, #240046 0%, #120a2e 50%, #3a2e00 100%);
+            background: linear-gradient(135deg, #1a0b2e 0%, #111 50%, #2e250b 100%);
             background-attachment: fixed;
             color: var(--texto-blanco);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             overflow-x: hidden; position: relative;
             min-height: 100vh;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
         }
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
 
-        /* --- CLASES DE UTILIDAD --- */
+        /* LOGO FONDO */
+        .logo-fondo {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80%; max-width: 600px; opacity: 0.05; pointer-events: none; z-index: -1;
+        }
+
+        /* EFECTO VIDRIO */
         .panel-vidrio { 
             background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         }
 
         /* --- HEADER --- */
-        .hero-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 30px 20px; gap: 15px; margin-bottom: 30px; }
-        .header-texto { flex: 1; }
-        .subtitulo-top { font-size: 0.9rem; color: var(--acento-amarillo); font-weight: 700; margin-bottom: 5px; }
+        .hero-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 40px 20px; gap: 20px; margin-bottom: 30px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+        .header-texto { flex: 1; padding-left: 10px; }
+        
+        /* DISEÑO CREATIVO SUBTÍTULO */
+        .subtitulo-top { 
+            font-size: 0.85rem; color: #ddd; font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 5px; 
+        }
+        .punto-sep { color: var(--acento-rojo); margin: 0 5px; font-size: 1.2rem; vertical-align: middle; }
+        
         .titulo-principal { font-size: 2.5rem; line-height: 1; margin-bottom: 20px; color: #ffffff; }
-        .info-contacto-header { padding: 15px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: #ddd; }
+
+        .info-contacto-header {
+            display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #ddd;
+            border-left: 3px solid var(--acento-amarillo); padding-left: 15px; /* Cambiado a Amarillo para variar */
+        }
         .dato-contacto { display: flex; align-items: flex-start; gap: 8px; }
-        .icono { color: var(--acento-amarillo); }
-        .header-logo { flex: 0 0 130px; display: flex; justify-content: center; align-items: flex-start; }
-        .logo-img { width: 130px; height: 130px; object-fit: contain; }
+        .icono { color: var(--acento-amarillo); font-weight: bold; font-size: 1.1rem; }
+
+        .header-logo { flex: 0 0 140px; display: flex; justify-content: center; }
+        .logo-img { width: 140px; height: 140px; object-fit: contain; }
 
         /* --- SECCIONES --- */
-        .contenedor-general { max-width: 1200px; margin: 0 auto 50px auto; padding: 0 15px; }
+        .contenedor-general { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 15px; }
 
         /* ALINEACIÓN */
-        .alineacion-box { overflow: hidden; }
-        .alineacion-img { width: 100%; height: 250px; position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .alineacion-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-        .alineacion-info { padding: 25px; }
-        .alineacion-titulo { font-size: 1.6rem; color: var(--acento-amarillo); margin-bottom: 15px; text-align: center; }
-        .alineacion-desc { font-size: 0.95rem; color: #eee; line-height: 1.6; margin-bottom: 25px; text-align: center; }
-        .tabla-precios { display: grid; gap: 10px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
-        .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
-        .fila-precio:last-child { border-bottom: none; }
-        .nombre-servicio { color: #ccc; font-size: 0.9rem; }
-        .valor-servicio { color: white; font-weight: bold; }
-        .fila-combo { margin-top: 5px; background: rgba(255, 215, 0, 0.15); border-color: var(--acento-amarillo); }
-        .fila-combo .valor-servicio { color: var(--acento-amarillo); font-size: 1.2rem; }
+        .alineacion-container { display: flex; flex-direction: column; gap: 20px; }
+        .alineacion-img-box { width: 100%; border-radius: 15px; overflow: hidden; border: 1px solid #333; }
+        .alineacion-img-box img { width: 100%; height: auto; display: block; }
+        .alineacion-info-box { padding: 25px; text-align: center; }
+        .alineacion-titulo { font-size: 1.8rem; color: var(--acento-amarillo); margin-bottom: 15px; }
+        .alineacion-desc { font-size: 1rem; color: #eee; line-height: 1.6; margin-bottom: 25px; text-align: left; }
+        .tabla-precios { display: grid; gap: 10px; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .fila-precio:last-child { border-bottom: none; padding-bottom: 0; }
+        .nombre-servicio { color: #ccc; font-size: 1rem; text-align: left; }
+        .valor-servicio { color: white; font-weight: 800; font-size: 1.2rem; }
+        .fila-combo { margin-top: 10px; background: rgba(255, 215, 0, 0.15); padding: 15px; border-radius: 10px; border: 1px solid var(--acento-amarillo); }
+        .fila-combo .nombre-servicio { color: var(--acento-amarillo); font-weight: 800; text-transform: uppercase; }
+        .fila-combo .valor-servicio { color: var(--acento-amarillo); font-size: 1.5rem; }
 
-        /* CABECERAS */
-        .cabecera-seccion-vidrio { display: flex; align-items: center; gap: 15px; padding: 15px 20px; margin-bottom: 25px; }
-        .logo-mini { width: 50px; height: 50px; object-fit: contain; opacity: 0.8; }
-        .titulo-seccion { font-size: 1.4rem; color: white; }
+        /* BANNERS (TIPO TIRA) */
+        .banner-tira {
+            position: relative; width: 100%; height: 130px;
+            border-radius: 15px; overflow: hidden; margin: 40px 0 20px 0;
+            border: 1px solid #333;
+        }
+        .banner-tira img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .banner-texto {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.6); z-index: 10; padding: 10px; text-align: center;
+        }
+        .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 0 2px 10px black; margin-bottom: 5px; }
+        .banner-desc { font-size: 0.9rem; color: #eee; background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 20px; }
+
+        /* CABECERAS SIMPLES */
+        .cabecera-simple-vidrio { display: flex; align-items: center; gap: 15px; padding: 15px 20px; margin-bottom: 25px; border-bottom: 4px solid; }
+        .logo-mini { width: 40px; height: 40px; object-fit: contain; opacity: 0.9; }
+        .titulo-seccion { font-size: 1.5rem; color: white; flex-grow: 1; }
+        .mini-desc-seccion { font-size: 0.8rem; color: #aaa; text-transform: none; font-weight: 400; display: block; margin-top: 2px;}
+
+        .borde-verde { border-color: var(--acento-verde); }
+        .borde-amarillo { border-color: var(--acento-amarillo); }
+        .borde-rojo { border-color: var(--acento-rojo); }
+        .borde-azul { border-color: var(--acento-azul); }
+        .borde-naranja { border-color: var(--acento-naranja); }
         
-        /* Colores texto */
-        .neu-color { color: var(--acento-verde); }
-        .aceite-color { color: var(--acento-amarillo); }
-        .atf-color { color: var(--acento-rojo); }
-        .filtro-color { color: var(--acento-azul); }
+        .text-verde { color: var(--acento-verde); }
+        .text-amarillo { color: var(--acento-amarillo); }
+        .text-rojo { color: var(--acento-rojo); }
+        .text-azul { color: var(--acento-azul); }
+        .text-naranja { color: var(--acento-naranja); }
 
         /* GRILLA */
         .grilla { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-        /* CARDS FOTOS */
+        /* CARDS */
         .card { background: var(--bg-card); border: 1px solid var(--borde-card); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-        .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; display: flex; justify-content: center; align-items: center; padding: 8px; box-sizing: border-box; }
+        .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; display: flex; justify-content: center; align-items: center; padding: 8px; }
         .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .info { padding: 12px 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .info h3 { font-size: 0.8rem; color: white; margin-bottom: 5px; line-height: 1.3; min-height: 32px; }
         .fila-precio-btn { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
         .precio { font-size: 1rem; font-weight: 800; }
         
-        /* BOTONES */
-        .btn-copiar { background: #333; border: 1px solid #555; color: #ccc; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+        .btn-copiar { background: #333; border: 1px solid #555; color: #ccc; width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
         .btn-copiar:active { transform: scale(0.9); }
         .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-        /* TARJETAS TEXTO (Neumáticos y Filtros) */
-        .card-texto { background: #151515; border: 1px solid #333; border-radius: 12px; padding: 12px; position: relative; }
-        .titulo-txt { font-size: 0.8rem; font-weight: 700; color: white; margin-bottom: 5px; height: 40px; overflow: hidden; line-height: 1.2; }
+        /* Cards Texto */
+        .card-texto { background: #151515; border: 1px solid #333; border-radius: 12px; padding: 12px; position: relative; min-height: 100px; display: flex; flex-direction: column; justify-content: space-between; }
+        .titulo-txt { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; line-height: 1.2; }
         .desc-txt { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
         .precio-txt { font-size: 1.1rem; font-weight: 800; }
-        .btn-copiar-txt { position: absolute; bottom: 10px; right: 10px; background: transparent; }
+        .btn-copiar-txt { position: absolute; bottom: 10px; right: 10px; background: transparent; padding: 0; width: 24px; height: 24px;}
 
-        /* LISTA SERVICIOS */
-        .lista-servicios-container { max-width: 600px; margin: 0 auto 40px auto; padding: 0 20px; text-align: center; }
-        .titulo-servicios { font-size: 1.5rem; color: var(--acento-violeta); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;}
-        .lista-servicios { list-style: none; padding: 0; margin: 0; display: inline-block; text-align: left; }
-        .lista-servicios li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ddd; font-size: 1rem; }
+        .card-neumatico { background: #151515; border: 1px solid #333; border-bottom: 3px solid var(--acento-verde); border-radius: 12px; padding: 12px; position: relative; }
+        .titulo-neu { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; height: 35px; overflow: hidden;}
+        .desc-neu { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
+        .precio-neu { font-size: 1.1rem; font-weight: 800; color: var(--acento-verde); }
+        .btn-copiar-neu { position: absolute; bottom: 10px; right: 10px; border-color: var(--acento-verde); color: var(--acento-verde); background: transparent; }
+
+        /* SERVICIOS FINAL */
+        .servicios-final-container { display: flex; align-items: center; justify-content: space-between; padding: 30px; margin-bottom: 40px; gap: 20px; }
+        .lista-servicios { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .lista-servicios li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: white; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .lista-servicios li:last-child { border-bottom: none; }
-        .bullet { color: var(--acento-violeta); margin-right: 10px; }
+        .bullet-serv { color: var(--acento-amarillo); margin-right: 10px; }
+        .logo-servicios { width: 150px; height: 150px; object-fit: contain; opacity: 0.9; }
 
-        /* FOOTER */
-        footer { background: rgba(0,0,0,0.5); border-top: 1px solid rgba(255,255,255,0.1); padding: 40px 20px; text-align: center; color: #aaa; font-size: 0.85rem; backdrop-filter: blur(10px); }
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(0,0,0,0.8); border-top: 2px solid var(--acento-rojo);
+            padding: 40px 20px 120px 20px; text-align: center; color: #aaa; font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        .horarios-footer {
+            margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center; line-height: 1.8; color: #eee;
+        }
+        .horarios-titulo { color: var(--acento-rojo); font-weight: bold; margin-bottom: 5px; display: block; }
+        .numeros-footer { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        
+        .btn-tel-footer { 
+            display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); 
+            padding: 10px 20px; border-radius: 10px; border: 1px solid var(--acento-rojo); color: white; text-decoration: none; font-size: 0.9rem; width: 100%; max-width: 300px; justify-content: space-between;
+        }
+        
+        /* Botón WhatsApp Footer */
+        .btn-ws-footer {
+            display: flex; align-items: center; gap: 10px; background: rgba(37, 211, 102, 0.15); 
+            padding: 10px 20px; border-radius: 10px; border: 1px solid var(--whatsapp-green); color: var(--whatsapp-green); text-decoration: none; font-size: 0.9rem; width: 100%; max-width: 300px; justify-content: center; font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-ws-footer:active { background: var(--whatsapp-green); color: black; }
 
-        /* MENU */
-        .flotante-container { position: fixed; bottom: 15px; right: 15px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
-        .btn-menu-principal { width: 55px; height: 55px; border-radius: 50%; font-size: 24px; background: var(--acento-amarillo); border: none; cursor: pointer; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); color: black; display: flex; align-items: center; justify-content: center; }
-        .menu-opciones { margin-bottom: 10px; transform: translateY(10px) scale(0.9); opacity: 0; pointer-events: none; transition: 0.3s; background: rgba(0,0,0,0.9); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 160px; }
+        /* --- MENÚ FLOTANTE (DERECHA) --- */
+        .flotante-container { 
+            position: fixed; bottom: 30px; right: 20px; z-index: 9999; 
+            display: flex; flex-direction: column-reverse; align-items: flex-end; 
+        }
+        .btn-menu-principal { 
+            width: 60px; height: 60px; border-radius: 15px; font-size: 24px; 
+            background: var(--acento-amarillo); border: none; cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); color: black; 
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); }
+
+        .menu-opciones { 
+            margin-bottom: 15px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
+            background: rgba(0,0,0,0.95); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 180px; overflow: hidden;
+        }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-        .menu-opciones a { padding: 12px 15px; color: white; text-decoration: none; display: block; border-bottom: 1px solid #333; font-size: 0.9rem;}
+        .menu-opciones a { 
+            padding: 15px 20px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;
+            border-bottom: 1px solid #333; font-size: 0.95rem; font-weight: 600;
+        }
+        .menu-opciones a:last-child { border-bottom: none; }
+        .icon-menu { width: 20px; height: 20px; fill: var(--acento-amarillo); }
+
+        @media (max-width: 768px) {
+            .servicios-final-container { flex-direction: column-reverse; text-align: center; }
+            .lista-servicios { text-align: center; width: 100%; }
+            .titulo-principal { font-size: 2.2rem; }
+            .header-logo { flex: 0 0 100px; }
+            .logo-img { width: 100px; height: 100px; }
+        }
     </style>
 </head>
 <body id="inicio">
 
-    <!-- HEADER -->
+    <img src="LOGO BLANCO.png" class="logo-fondo" alt="Fondo">
+
+    <!-- HEADER RE-DISEÑADO -->
     <header class="hero-header">
         <div class="header-texto">
-            <span class="subtitulo-top">LUBRICENTRO • GOMERÍA</span>
+            <span class="subtitulo-top">TALLER <span class="punto-sep">•</span> GOMERÍA <span class="punto-sep">•</span> LUBRICENTRO</span>
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
             <div class="info-contacto-header panel-vidrio">
-                <div class="dato-contacto"><span class="icono">📍</span><span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5. Rincón de los Sauces, Neuquén.</span></div>
-                <div class="dato-contacto"><span class="icono">📞</span><span>WhatsApp 1: 2995 942 834</span></div>
-                <div class="dato-contacto"><span class="icono">📞</span><span>WhatsApp 2: 299 471 6353</span></div>
+                <div class="dato-contacto"><span class="icono">📍</span> Calle 3. Av. Papa Francisco Frente al CENAF N° 5</div>
+                <div class="dato-contacto"><span class="icono">🌍</span> Rincón de los Sauces, Neuquén</div>
             </div>
         </div>
         <div class="header-logo">
@@ -147,15 +249,15 @@
 
     <!-- ALINEACIÓN -->
     <section class="contenedor-general" id="alineacion">
-        <div class="alineacion-box panel-vidrio">
-            <div class="alineacion-img"><img src="Alineamiento y balanceo/alineacion.jpg" alt="Alineación"></div>
-            <div class="alineacion-info">
+        <div class="alineacion-container">
+            <div class="alineacion-img-box"><img src="Alineamiento y balanceo/alineacion.jpg" alt="Alineación"></div>
+            <div class="alineacion-info-box panel-vidrio">
                 <h3 class="alineacion-titulo">ALINEACIÓN Y BALANCEO</h3>
-                <p class="alineacion-desc">Servicio técnico profesional. Ajustamos los ángulos para garantizar seguridad, evitar desgaste y eliminar vibraciones.</p>
+                <p class="alineacion-desc">Aseguramos el correcto funcionamiento de tu vehículo. La alineación ajusta los ángulos de las ruedas para que estén rectas, y el balanceo equilibra el peso para que giren sin vibrar.</p>
                 <div class="tabla-precios">
-                    <div class="fila-precio"><span class="nombre-servicio">Alineación</span><span class="valor-servicio">$15.000</span></div>
-                    <div class="fila-precio"><span class="nombre-servicio">Balanceo (c/u)</span><span class="valor-servicio">$5.000</span></div>
-                    <div class="fila-precio fila-combo"><span class="nombre-servicio">COMBO COMPLETO</span><span class="valor-servicio">$25.000</span></div>
+                    <div class="fila-precio"><span class="nombre-servicio">Alineación</span><span class="valor-servicio">$60.000</span></div>
+                    <div class="fila-precio"><span class="nombre-servicio">Balanceo (4 ruedas)</span><span class="valor-servicio">$60.000</span></div>
+                    <div class="fila-combo"><div style="display:flex; justify-content:space-between; width:100%;"><span class="nombre-servicio">CONJUNTO COMPLETO</span><span class="valor-servicio">$120.000</span></div></div>
                 </div>
             </div>
         </div>
@@ -163,161 +265,219 @@
 
     <!-- NEUMÁTICOS -->
     <section class="contenedor-general" id="neumaticos">
-        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-verde);">
-            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
-            <h2 class="titulo-seccion neu-color">NEUMÁTICOS</h2>
+        <div class="cabecera-simple-vidrio panel-vidrio borde-verde">
+            <img src="LOGO BLANCO.png" class="logo-mini">
+            <div><h2 class="titulo-seccion text-verde">NEUMÁTICOS</h2><span class="mini-desc-seccion">Venta y Colocación</span></div>
         </div>
         <div class="grilla">
-            <!-- ITEMS -->
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">175 65 R14 KPATOS</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$115.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">185 65 R15 Aderenz'a</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$120.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Neumático Aderenza 185 65 R15 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">205 55 R16 Firemax</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$135.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Neumático Firemax 205 55 R16 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">195 55 R15 Sunset</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$135.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Neumático Sunset 195 55 R15 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">185 60 R14 Sunset</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$120.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Neumático Sunset 185 60 R14 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">Moto 2.75 R14</div><div class="desc-txt">Cubierta Moto</div><div class="precio-txt" style="color: var(--acento-verde);">$54.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Cubierta Moto 2.75 R14 - $54.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">185/65 R15 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$120.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Ling Long 185/65 R15 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">175 70 R13 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$115.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Ling Long 175 70 R13 - $115.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">225 70 R17 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$180.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('Ling Long 225 70 R17 - $180.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-verde);"><div class="titulo-txt">185 65 R14 KPATOS</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt" style="color: var(--acento-verde);">$123.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-verde); color:var(--acento-verde);" onclick="copiar('KPATOS 185 65 R14 - $123.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">175 65 R14 KPATOS</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$115.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">185 65 R15 Aderenz'a</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$120.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Aderenza 185 65 R15')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">205 55 R16 Firemax</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$135.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Firemax 205 55 R16')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">195 55 R15 Sunset</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$135.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Sunset 195 55 R15')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">185 60 R14 Sunset</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$120.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Sunset 185 60 R14')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">Moto 2.75 R14</div><div class="desc-txt">Cubierta Moto</div><div class="precio-txt text-verde">$54.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Cubierta Moto 2.75 R14')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">185/65 R15 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$120.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Ling Long 185/65 R15')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">175 70 R13 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$115.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Ling Long 175 70 R13')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">225 70 R17 Ling Long</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$180.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('Ling Long 225 70 R17')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-verde);"><div class="titulo-txt">185 65 R14 KPATOS</div><div class="desc-txt">Balanceo + Válvula</div><div class="precio-txt text-verde">$123.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-verde);" onclick="copiar('KPATOS 185 65 R14')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
         </div>
     </section>
 
-    <!-- ACEITES -->
+    <!-- CÁMARAS DE MOTO (NARANJA) -->
+    <section class="contenedor-general" id="camaras">
+        <div class="cabecera-simple-vidrio panel-vidrio borde-naranja">
+            <img src="LOGO BLANCO.png" class="logo-mini">
+            <div><h2 class="titulo-seccion text-naranja">CÁMARAS DE MOTO</h2><span class="mini-desc-seccion">Elpra y otras marcas</span></div>
+        </div>
+        <div class="grilla">
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">3.50 R10 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$10.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto 3.50 R10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.75 3.00 R14 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$10.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R14')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">4.00 4.50 R18</div><div class="desc-txt">110/100 - 120/100 R18</div><div class="precio-txt text-naranja">$18.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R18 Grande')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.75 3.00 R19 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$18.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R19')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">3.50 4.10 R17 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$15.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R17 Ancha')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.75 3.00 R17 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$10.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R17')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.25 2.50 R17 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$10.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R17 Fina')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.75 3.00 R21 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$15.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R21')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.75 3.00 R18</div><div class="desc-txt">90/90 R18</div><div class="precio-txt text-naranja">$15.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R18')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">2.25 2.50 R16 - Elpra</div><div class="desc-txt">Cámara de Moto</div><div class="precio-txt text-naranja">$15.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R16')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-naranja);"><div class="titulo-txt">110 90 R13 Tunning</div><div class="desc-txt">Cámara para Moto</div><div class="precio-txt text-naranja">$15.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-naranja);" onclick="copiar('Cámara Moto R13 Tunning')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+        </div>
+    </section>
+
+    <!-- ACEITES DE MOTOR (CON BANNER) -->
     <section class="contenedor-general" id="aceites">
-        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-amarillo);">
-            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
-            <h2 class="titulo-seccion aceite-color">ACEITES MOTOR</h2>
+        <div class="banner-tira" style="border-color: var(--acento-amarillo);">
+            <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Aceites">
+            <div class="banner-texto">
+                <h2 style="color: var(--acento-amarillo);">ACEITES DE MOTOR</h2>
+                <div class="banner-desc">Minerales y Sintéticos</div>
+            </div>
         </div>
+
         <div class="grilla">
-            <!-- 8 ITEMS -->
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="1"></div><div class="info"><h3>Aceite 1</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="1"></div><div class="info"><h3>Aceite 1</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio text-amarillo">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
-    <!-- ATF -->
+    <!-- ATF ACEITES (CON BANNER) -->
     <section class="contenedor-general" id="atf">
-        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-rojo);">
-            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
-            <h2 class="titulo-seccion atf-color">ACEITES ATF</h2>
+        <div class="banner-tira" style="border-color: var(--acento-rojo);">
+            <img src="Banners/BANNER-ACEITE-ATF.png" alt="ATF">
+            <div class="banner-texto">
+                <h2 style="color: var(--acento-rojo);">ATF ACEITES</h2>
+                <div class="banner-desc">Transmisión y Dirección</div>
+            </div>
         </div>
         <div class="grilla">
-            <!-- 12 ITEMS -->
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: KITS DE FILTROS -->
+    <!-- KITS DE FILTROS (AZUL) -->
     <section class="contenedor-general" id="filtros">
-        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-azul);">
-            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
-            <h2 class="titulo-seccion filtro-color">KITS DE FILTROS</h2>
+        <div class="cabecera-simple-vidrio panel-vidrio borde-azul">
+            <img src="LOGO BLANCO.png" class="logo-mini">
+            <div><h2 class="titulo-seccion text-azul">KITS DE FILTROS</h2><span class="mini-desc-seccion">Kits completos</span></div>
         </div>
         <div class="grilla">
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford Fiesta / Eco Kinetic 1.6</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$50.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Ford Fiesta Kinetic 1.6 - $50.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW Polo / Virtus / T-Cross 1.6 MSI</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$42.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros VW Polo 1.6 - $42.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Toyota Etios 1.5 16v 2016-></div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$36.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Toyota Etios - $36.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chery Tiggo 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$68.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Chery Tiggo 2.0 - $68.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Fiat Argo / Cronos 1.8 Etorq</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$54.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Fiat Argo 1.8 - $54.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford Ka / Eco Freestyle</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$49.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Ford Ka - $49.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Peugeot 208 VTI 2013-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$47.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Peugeot 208 VTI - $47.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford Ranger 2.2 3.2 TDCI 2012-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$70.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Ford Ranger 2.2/3.2 - $70.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chevrolet Tracker 1.8 16v</div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$37.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Chevrolet Tracker - $37.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Fiat Mobi</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$41.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Fiat Mobi - $41.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford Ranger 3.0 Power Stroke</div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$83.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Ford Ranger 3.0 - $83.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Peugeot 206 / 207 Motor 1.9</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$46.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Peugeot 206/207 1.9 - $46.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Peugeot 208 1.6 16v 2020</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$55.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Peugeot 208 2020 - $55.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chevrolet Aveo</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$60.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Chevrolet Aveo - $60.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Renault Duster/Oroch 1.3 Turbo</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$63.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Duster 1.3 Turbo - $63.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Renault Duster Y Oroch 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$40.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Duster 2.0 - $40.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Renault Kangoo 1.6 16V</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$48.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Kangoo 1.6 - $48.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Toyota Hilux 2.4 & 2.8</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$65.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Hilux 2.4/2.8 - $65.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Toyota Hilux 2.5 & 3.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$60.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Hilux 2.5/3.0 - $60.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford Focus 3 - Sigma 1.6 - Duratec 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$59.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Ford Focus 3 - $59.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Fiat Palio - Siena 1.6</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$37.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Palio/Siena - $37.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford EcoSport Kinetic 1.5 1.6 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$49.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros EcoSport Kinetic - $49.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Ford EcoSport Zetec 1.6 8v</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$43.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros EcoSport Zetec - $43.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW Suran - Fox - Gol Trend - Voyage 1.6</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$40.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros VW 1.6 - $40.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Toyota Corolla 1.8</div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$35.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Corolla - $35.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Citroen C4 2.0 - Peugeot 308 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$47.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros C4/308 2.0 - $47.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW UP</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$48.600</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros VW UP - $48.600')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Renault Master 2.3 DCI</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$67.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Master 2.3 - $67.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chevrolet Corsa 1.4 & 1.6</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$32.500</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Corsa - $32.500')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chevrolet Cruze 1.8 16v 2010-></div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$44.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Cruze 1.8 - $44.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Fiat Argo / Cronos 1.3</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$49.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Argo/Cronos 1.3 - $49.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Peugeot 208 1.6 2008</div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$37.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Peugeot 208 1.6 - $37.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">Chevrolet S10 2.8 2012-></div><div class="desc-txt">Kit x 5 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$83.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros S10 2.8 - $83.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW Amarok 2.0 Td 2010-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$89.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Amarok 2.0 - $89.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW Amarok 2.0 Td 2016-> C/Sensor</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$138.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Amarok c/sensor - $138.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
-            <div class="card-texto" style="border-bottom-color: var(--acento-azul);"><div class="titulo-txt">VW Amarok V6 CD HI 2017-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt" style="color: var(--acento-azul);">$146.000</div><button class="btn-copiar btn-copiar-txt" style="border:1px solid var(--acento-azul); color:var(--acento-azul);" onclick="copiar('Kit Filtros Amarok V6 - $146.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Ford Fiesta / Eco Kinetic 1.6</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$50.500</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Fiesta Kinetic')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">VW Polo / Virtus 1.6 MSI</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$42.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros VW Polo 1.6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Toyota Etios 1.5 16v 2016-></div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt text-azul">$36.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Etios')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Chery Tiggo 2.0</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$68.500</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Tiggo 2.0')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Fiat Argo / Cronos 1.8</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$54.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Argo 1.8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Ford Ka / Eco Freestyle</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$49.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Ka Freestyle')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Peugeot 208 VTI 2013-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$47.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros 208 VTI')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Ford Ranger 2.2/3.2 TDCI</div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$70.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Ranger 2.2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">Chevrolet Tracker 1.8</div><div class="desc-txt">Kit x 3 Filtros</div><div class="precio-txt text-azul">$37.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Tracker 1.8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-texto" style="border-bottom: 3px solid var(--acento-azul);"><div class="titulo-txt">VW Amarok 2.0 Td 2010-></div><div class="desc-txt">Kit x 4 Filtros</div><div class="precio-txt text-azul">$89.000</div><button class="btn-copiar btn-copiar-txt" style="color:var(--acento-azul);" onclick="copiar('Kit Filtros Amarok 2.0')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
         </div>
     </section>
 
-    <!-- LISTA DE SERVICIOS (Antes del Footer) -->
-    <div class="lista-servicios-container panel-vidrio">
-        <h3 class="titulo-servicios"><img src="LOGO BLANCO.png" alt="Logo" class="logo-mini" style="width:30px;height:30px;"> SERVICIOS TALLER</h3>
-        <ul class="lista-servicios">
-            <li><span class="bullet">🔧</span> Alineación Láser</li>
-            <li><span class="bullet">⚖️</span> Balanceo Computarizado</li>
-            <li><span class="bullet">🚗</span> Tren Delantero</li>
-            <li><span class="bullet">🛠️</span> Mecánica Ligera</li>
-            <li><span class="bullet">🛑</span> Frenos</li>
-            <li><span class="bullet">🛢️</span> Lubricación</li>
-        </ul>
-    </div>
+    <!-- SERVICIOS FINAL (Antes del Footer) -->
+    <section class="contenedor-general" style="text-align: center;">
+        <div class="panel-vidrio" style="display: inline-block; padding: 30px 40px; text-align: left;">
+            <div style="display:flex; align-items:center; gap:20px; margin-bottom:20px; justify-content:center;">
+                <img src="LOGO BLANCO.png" style="width:80px;">
+                <h2 style="margin:0; font-size:1.8rem; color:white;">SERVICIOS</h2>
+            </div>
+            <ul style="list-style:none; padding:0; margin:0; font-size:1.1rem; line-height:1.8;">
+                <li><span style="color:var(--acento-amarillo)">✓</span> ALINEACIÓN LÁSER</li>
+                <li><span style="color:var(--acento-amarillo)">✓</span> BALANCEO COMPUTARIZADO</li>
+                <li><span style="color:var(--acento-amarillo)">✓</span> TREN DELANTERO</li>
+                <li><span style="color:var(--acento-amarillo)">✓</span> MECÁNICA LIGERA</li>
+                <li><span style="color:var(--acento-amarillo)">✓</span> FRENOS</li>
+                <li><span style="color:var(--acento-amarillo)">✓</span> LUBRICACIÓN</li>
+            </ul>
+        </div>
+    </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER COMPLETO -->
     <footer>
         <strong>ULTIMA ESTACIÓN</strong>
-        <p>Calle 3. Av. Papa Francisco Frente al CENAF N° 5.<br>Rincón de Los Sauces, Neuquén.</p>
-        <p>📞 2995 942 834  /  📞 299 471 6353</p>
-        <p style="margin-top: 20px; opacity: 0.5; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
+        <p>Rincón de Los Sauces, Neuquén</p>
+        
+        <!-- NÚMEROS DE TELÉFONO CON BOTÓN DE COPIAR -->
+        <div class="numeros-footer">
+            <div class="btn-tel-footer">
+                <span>📱 2995 942 834</span>
+                <button class="btn-copiar" onclick="copiar('2995942834')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+            </div>
+            <div class="btn-tel-footer">
+                <span>📱 299 471 6353</span>
+                <button class="btn-copiar" onclick="copiar('2994716353')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+            </div>
+            <!-- BOTÓN WHATSAPP -->
+            <a href="https://wa.me/message/5PG7GZCVESXWF1" class="btn-ws-footer" target="_blank">
+                <span>Ir a WhatsApp</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+        </div>
+
+        <!-- HORARIOS -->
+        <div class="horarios-footer">
+            <span class="horarios-titulo">⏰ HORARIOS DE ATENCIÓN</span>
+            Lunes a Viernes: 09:30 a 12:30 y 16:00 a 20:00<br>
+            Sábado: 09:00 a 13:00<br>
+            <span style="color:#ff4757;">Domingo: CERRADO</span>
+        </div>
+
+        <p style="margin-top: 20px; opacity: 0.6; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
     </footer>
 
     <!-- MENÚ FLOTANTE -->
     <div class="flotante-container">
         <div class="menu-opciones" id="menuDesplegable">
-            <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
-            <a href="#alineacion" onclick="toggleMenu()">🔧 Alineación</a>
-            <a href="#neumaticos" onclick="toggleMenu()">🛞 Neumáticos</a>
-            <a href="#aceites" onclick="toggleMenu()">🛢️ Aceites</a>
-            <a href="#atf" onclick="toggleMenu()">⚙️ ATF</a>
-            <a href="#filtros" onclick="toggleMenu()">🟦 Filtros</a>
+            <a href="#inicio" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Inicio
+            </a>
+            <a href="#alineacion" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+                Alineación
+            </a>
+            <a href="#neumaticos" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
+                Neumáticos
+            </a>
+            <a href="#camaras" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                Cámaras
+            </a>
+            <a href="#aceites" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77z"/></svg>
+                Aceites
+            </a>
+            <a href="#atf" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.05 8.87a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.58 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                ATF
+            </a>
+            <a href="#filtros" onclick="toggleMenu()">
+                <svg class="icon-menu" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                Filtros
+            </a>
         </div>
+        <!-- BOTÓN FLOTANTE -->
         <button class="btn-menu-principal" onclick="toggleMenu()">☰</button>
     </div>
 
     <script>
         function toggleMenu(){
-            document.getElementById("menuDesplegable").classList.toggle("activo");
+            const menu = document.getElementById("menuDesplegable");
+            const btn = document.querySelector(".btn-menu-principal");
+            
+            menu.classList.toggle("activo");
+            btn.classList.toggle("abierto");
+            
+            if(menu.classList.contains("activo")){
+                btn.innerHTML = "✕";
+            } else {
+                btn.innerHTML = "☰";
+            }
         }
 
         function copiar(texto) {
             navigator.clipboard.writeText(texto).then(function() {
-                // Feedback visual simple (opcional)
                 const btn = document.activeElement;
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '✅';
-                setTimeout(() => { btn.innerHTML = originalHTML; }, 1500);
-            }, function(err) {
-                console.error('Error al copiar', err);
+                btn.style.transform = "scale(1.2)";
+                setTimeout(() => { btn.style.transform = "scale(1)"; }, 200);
             });
         }
     </script>
