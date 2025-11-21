@@ -6,164 +6,190 @@
     <title>Taller Ultima Estación</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* --- CONFIGURACIÓN DE COLORES Y ESTILO --- */
+        /* --- CONFIGURACIÓN DE COLORES --- */
         :root {
-            --bg-profundo: #050505;   /* Negro casi total */
-            --bg-tarjeta: #121212;    /* Gris muy oscuro */
+            --bg-profundo: #050505;
+            --bg-tarjeta: #121212;
             --texto-blanco: #ffffff;
             --texto-gris: #b3b3b3;
-            /* Colores de acento vibrantes */
-            --acento-amarillo: #ffd700; /* Dorado/Amarillo */
-            --acento-rojo: #ff4757;     /* Rojo intenso */
+            /* Colores de acento NAVEGACIÓN */
+            --acento-amarillo: #ffd700;
+            --acento-violeta: #c026d3; /* Nuevo color violeta vibrante */
+            --acento-rojo: #ff4757;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-profundo);
             color: var(--texto-blanco);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
-            overflow-x: hidden; /* Evita scroll horizontal */
+            overflow-x: hidden;
             position: relative;
         }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; }
 
-        /* --- FONDO ANIMADO (Burbujas de luz) --- */
+        /* --- FONDO ANIMADO (Amarillo y Violeta) --- */
         .fondo-animado {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* Se queda detrás del contenido */
-            overflow: hidden;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); overflow: hidden;
         }
         .luz {
-            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+            position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3;
             animation: flotar 20s infinite alternate ease-in-out;
         }
-        .luz-1 { top: 10%; left: 20%; width: 300px; height: 300px; background: var(--acento-amarillo); animation-duration: 25s; }
-        .luz-2 { bottom: 20%; right: 10%; width: 400px; height: 400px; background: var(--acento-rojo); animation-delay: -5s; }
-        .luz-3 { top: 60%; left: 50%; width: 250px; height: 250px; background: var(--acento-amarillo); opacity: 0.2; animation-duration: 18s; }
+        .luz-1 { top: 10%; left: 20%; width: 400px; height: 400px; background: var(--acento-amarillo); animation-duration: 25s; }
+        .luz-2 { bottom: 20%; right: 10%; width: 500px; height: 500px; background: var(--acento-violeta); animation-delay: -5s; }
+
 
         @keyframes flotar {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(100px, 50px) scale(1.2); }
         }
 
+        /* --- CLASE "EFECTO VIDRIO" (Reusable) --- */
+        .panel-vidrio {
+            background: rgba(255, 255, 255, 0.03); /* Muy transparente */
+            backdrop-filter: blur(15px); /* El efecto borroso mágico */
+            -webkit-backdrop-filter: blur(15px); /* Para Safari */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 20px;
+        }
 
-        /* --- NUEVO HEADER (Izquierda Texto / Derecha Logo) --- */
+
+        /* --- HEADER PRINCIPAL --- */
         .hero-header {
-            display: flex; /* Activa el modo flexible */
-            align-items: center; /* Centra verticalmente */
-            justify-content: space-between; /* Separa los bloques a los extremos */
-            padding: 60px 10% 80px 10%; /* Márgenes amplios */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-            border-bottom: 1px solid #333;
-            flex-wrap: wrap; /* Para celulares */
-            gap: 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 60px 10% 80px 10%;
+            flex-wrap: wrap; gap: 40px; id="inicio";
         }
-
-        /* Bloque Izquierdo (Texto) */
-        .header-left {
-            flex: 2; /* Ocupa más espacio */
-            text-align: left; /* Todo alineado a la izquierda */
-            min-width: 300px;
-        }
+        .header-left { flex: 2; min-width: 300px; }
         .subtitulo-top { font-size: 1.1rem; color: var(--acento-amarillo); font-weight: 600; letter-spacing: 1px; display: block; margin-bottom: 10px;}
         .titulo-principal {
-            font-size: 4rem; line-height: 1;
+            font-size: 4rem; line-height: 1; margin-bottom: 30px;
             background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 30px; text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         
-        /* Bloque de Contacto y Servicios */
-        .info-bloque {
-            background: rgba(255,255,255,0.05); /* Fondo semitransparente */
-            padding: 25px; border-radius: 15px;
-            border-left: 4px solid var(--acento-rojo);
-            backdrop-filter: blur(5px); /* Efecto vidrio borroso */
+        /* Info block ahora usa el efecto vidrio */
+        .info-bloque-header {
+            padding: 30px; border-left: 4px solid var(--acento-amarillo);
         }
         .dato-contacto { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .icono { color: var(--acento-amarillo); }
-        
-        .servicios-lista {
-            margin-top: 20px; padding-top: 20px; border-top: 1px solid #333;
-        }
+        .servicios-lista { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .servicios-destacados { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 10px; display: block;}
         .servicios-resto { color: var(--texto-gris); line-height: 1.6; font-size: 1rem; }
 
-
-        /* Bloque Derecho (Logo) */
-        .header-right {
-            flex: 1; display: flex; justify-content: flex-end; /* Mueve el logo a la derecha */
-            min-width: 250px;
-        }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; min-width: 250px; }
         .logo-cuadrado {
-            width: 300px; height: 300px; /* Logo grande y cuadrado */
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); /* Resplandor dorado suave */
+            width: 300px; height: 300px; object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
             animation: aparecerLogo 1.5s ease-out;
         }
         @keyframes aparecerLogo { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); }}
 
+        /* --- NUEVA SECCIÓN: ALINEACIÓN Y BALANCEO --- */
+        .contenedor-general { max-width: 1200px; margin: 100px auto; padding: 0 30px; }
+        
+        .titulo-seccion-principal {
+            font-size: 2.5rem; text-align: center; margin-bottom: 50px;
+            color: var(--acento-violeta); text-shadow: 0 0 20px rgba(192, 38, 211, 0.4);
+        }
 
-        /* --- ESTILOS DEL CATÁLOGO (Se mantienen igual) --- */
-        .seccion-contenedor { max-width: 1200px; margin: 80px auto; padding: 0 30px; }
+        .layout-alineacion {
+            display: flex; gap: 40px; align-items: center; /* Centrado vertical */
+        }
+        .img-alineacion-container { flex: 1; }
+        .img-alineacion-container img {
+            width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #333;
+        }
+        .texto-alineacion-panel { flex: 1; padding: 40px; }
+        .texto-alineacion-panel h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--acento-amarillo); }
+        .texto-alineacion-panel p { color: var(--texto-gris); line-height: 1.8; font-size: 1.1rem; margin-bottom: 15px;}
+
+        /* --- ESTILOS DE CATÁLOGOS --- */
         .cabecera-categoria { position: relative; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .cabecera-categoria img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.6; transition: 0.3s;}
+        .cabecera-categoria img { width: 100%; height: 250px; object-fit: cover; display: block; opacity: 0.6; transition: 0.3s;}
         .cabecera-categoria:hover img { opacity: 0.8; transform: scale(1.05); }
         .texto-cabecera { position: absolute; bottom: 0; left: 0; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); width: 100%; }
         .texto-cabecera h2 { font-size: 2.2rem; margin-bottom: 5px; text-shadow: 2px 2px 10px black; }
         
-        /* --- GRILLA Y TARJETAS MÁS GRANDES --- */
-        .grilla {
-            display: grid;
-            /* CAMBIO: Aumentado de 200px a 280px para que sean mucho más grandes */
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .card {
-            background: var(--bg-tarjeta); border-radius: 15px; overflow: hidden;
-            border: 1px solid #333; transition: all 0.3s ease; display: flex; flex-direction: column;
-        }
+        .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-tarjeta); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: all 0.3s ease; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); border-color: var(--acento-amarillo); box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15); }
-
         .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 15px; box-sizing: border-box; }
         .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .info { padding: 20px; }
         .info h3 { font-size: 1.1rem; color: white; margin-bottom: 5px; letter-spacing: 1px; }
         .precio { font-size: 1.4rem; font-weight: 800; display: block; margin-top: 10px; }
 
-        /* Ajuste para celulares en el header */
+        /* --- BOTÓN FLOTANTE INTERACTIVO --- */
+        .flotante-container {
+            position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+            display: flex; flex-direction: column-reverse; align-items: flex-end;
+        }
+        .btn-menu-principal {
+            background: linear-gradient(135deg, var(--acento-amarillo), #f39c12);
+            color: #000; width: 65px; height: 65px; border-radius: 18px; border: none;
+            font-size: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: transform 0.3s; display: flex; align-items: center; justify-content: center;
+        }
+        .btn-menu-principal:hover { transform: scale(1.1) rotate(90deg); }
+        
+        .menu-opciones {
+            margin-bottom: 15px; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.8);
+            transform-origin: bottom right; transition: all 0.3s ease-in-out; pointer-events: none;
+        }
+        .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        
+        /* El menú también es de vidrio */
+        .menu-vidrio {
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; min-width: 220px;
+        }
+        .menu-opciones a {
+            padding: 15px 20px; text-decoration: none; color: white; font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; transition: background 0.2s;
+        }
+        .menu-opciones a:hover { background: rgba(255,255,255,0.1); color: var(--acento-amarillo); }
+        .menu-opciones a span { margin-right: 15px; font-size: 1.3rem; }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hero-header { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
             .header-left { text-align: center; }
             .header-right { justify-content: center; margin-bottom: 20px; }
             .titulo-principal { font-size: 3rem; }
             .logo-cuadrado { width: 200px; height: 200px; }
+            
+            /* Alineación vertical en celular */
+            .layout-alineacion { flex-direction: column; }
+            .texto-alineacion-panel { padding: 30px 20px; }
         }
     </style>
 </head>
-<body>
+<body id="inicio">
 
     <div class="fondo-animado">
         <div class="luz luz-1"></div>
         <div class="luz luz-2"></div>
-        <div class="luz luz-3"></div>
     </div>
 
     <header class="hero-header">
-        
         <div class="header-left">
             <span class="subtitulo-top">TALLER • LUBRICENTRO • GOMERÍA</span>
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
             
-            <div class="info-bloque">
+            <div class="info-bloque-header panel-vidrio">
                 <div class="dato-contacto">
-                    <span class="icono">📞</span>
+                    <span style="color: var(--acento-amarillo);">📞</span>
                     <strong>2995 942 834  /  299 471 6353</strong>
                 </div>
                 <div class="dato-contacto">
-                    <span class="icono">📍</span>
+                    <span style="color: var(--acento-amarillo);">📍</span>
                     <span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5</span>
                 </div>
 
@@ -175,16 +201,35 @@
                 </div>
             </div>
         </div>
-
         <div class="header-right">
             <img src="LOGO BLANCO.png" alt="Logo Ultima Estación" class="logo-cuadrado">
         </div>
     </header>
 
 
-    <div class="seccion-contenedor">
+    <section class="contenedor-general" id="alineacion">
+        <h2 class="titulo-seccion-principal">SERVICIOS ESPECIALIZADOS</h2>
+        
+        <div class="layout-alineacion">
+            <div class="img-alineacion-container">
+                <img src="alineacion.jpg" alt="Alineación 3D y Balanceo">
+            </div>
+            
+            <div class="texto-alineacion-panel panel-vidrio">
+                <h3>Alineación 3D y Balanceo Computarizado</h3>
+                <p>Utilizamos tecnología de última generación para asegurar el contacto perfecto de tus neumáticos con el camino.</p>
+                <p>✅ Mejora la estabilidad y el manejo.<br>
+                   ✅ Evita el desgaste irregular de cubiertas.<br>
+                   ✅ Elimina vibraciones en el volante a alta velocidad.</p>
+                <p style="margin-top: 20px; font-weight: bold; color: white;">Recomendado cada 10.000 km o al cambiar cubiertas.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="contenedor-general" id="aceites">
         <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-amarillo);">
-            <img src="banner_aceites.jpg" alt="Portada Aceites">
+            <img src="imagenes/banner_aceites.jpg" alt="Portada Aceites">
             <div class="texto-cabecera">
                 <h2 style="color: var(--acento-amarillo);">ACEITES DE MOTOR</h2>
                 <p>Lubricantes minerales, semi-sintéticos y sintéticos.</p>
@@ -202,16 +247,16 @@
         </div>
     </div>
 
-    <div class="seccion-contenedor">
+    <div class="contenedor-general" id="atf">
         <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-rojo);">
-            <img src="banner_atf.jpg" alt="Portada ATF">
+            <img src="imagenes/banner_atf.jpg" alt="Portada ATF">
             <div class="texto-cabecera">
                 <h2 style="color: var(--acento-rojo);">ACEITES ATF</h2>
                 <p>Fluidos para transmisión automática y dirección hidráulica.</p>
             </div>
         </div>
         <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+             <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 2</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 3</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 4</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
@@ -225,6 +270,22 @@
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 12</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
         </div>
     </div>
+
+    <div class="flotante-container">
+        <div class="menu-opciones menu-vidrio" id="menuDesplegable">
+            <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
+            <a href="#alineacion" onclick="toggleMenu()">🔧 Alineación</a>
+            <a href="#aceites" onclick="toggleMenu()">🛢️ Aceites Motor</a>
+            <a href="#atf" onclick="toggleMenu()">⚙️ Aceites ATF</a>
+        </div>
+        <button class="btn-menu-principal" onclick="toggleMenu()">☰</button>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("menuDesplegable").classList.toggle("activo");
+        }
+    </script>
 
 </body>
 </html>
