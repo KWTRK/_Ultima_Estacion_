@@ -6,18 +6,17 @@
     <title>Taller Ultima Estación</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* --- NUEVA PALETA "CYBER DARK" --- */
+        /* --- PALETA DE COLORES --- */
         :root {
-            --bg-fondo: #050505; /* Negro profundo para todo el fondo */
-            --bg-card: #111111; 
-            --borde-card: #222;
+            --bg-fondo: #120a2e; /* Fondo base oscuro */
+            --bg-card: #1a1a1a;  /* Tarjetas oscuras */
+            --borde-card: #333;
             
-            /* Neón */
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
-            --neon-green: #00e676;
-            --neon-gold: #ffd700;
-            --neon-red: #ff4757;
+            /* Acentos */
+            --acento-violeta: #9d4edd;
+            --acento-amarillo: #ffd700;
+            --acento-verde: #00e676;
+            --acento-rojo: #ff4757;
             
             --texto-blanco: #ffffff;
             --texto-gris: #bbbbbb;
@@ -25,206 +24,190 @@
 
         html { 
             scroll-behavior: smooth; 
-            background-color: var(--bg-fondo); /* ARREGLA EL HUECO DE ABAJO */
             height: 100%;
         }
         
         body {
-            background-color: var(--bg-fondo);
+            /* --- FONDO DEGRADADO FIJO (Violeta a Amarillo) --- */
+            background: linear-gradient(135deg, #240046 0%, #120a2e 50%, #3a2e00 100%);
+            background-attachment: fixed; /* Fijo al hacer scroll */
+            
             color: var(--texto-blanco);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             overflow-x: hidden; position: relative;
             min-height: 100vh;
-            padding-bottom: 100px; /* Espacio para que no se corte el final */
+            padding-bottom: 100px;
         }
 
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
 
-        /* --- FONDO ANIMADO --- */
-        .fondo-animado {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #151515 0%, #000000 100%);
-        }
-        
-        /* Transición suave de colores de fondo */
-        @keyframes cambioColor {
-            0% { background: rgba(255, 71, 87, 0.15); } /* Rojo */
-            33% { background: rgba(0, 243, 255, 0.15); } /* Azul */
-            66% { background: rgba(0, 230, 118, 0.15); } /* Verde */
-            100% { background: rgba(255, 71, 87, 0.15); } /* Rojo */
-        }
-
-        .luz-fondo {
-            position: absolute; top: 20%; left: 10%; width: 80%; height: 60%;
-            filter: blur(120px); border-radius: 50%;
-            animation: cambioColor 10s infinite linear alternate;
+        /* --- CLASE MÁGICA: EFECTO VIDRIO (Glassmorphism) --- */
+        .panel-vidrio { 
+            background: rgba(255, 255, 255, 0.05); /* Muy transparente */
+            backdrop-filter: blur(15px); /* Efecto borroso */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
         /* --- HEADER --- */
         .hero-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 30px 20px; gap: 15px; margin-bottom: 20px;
-            border-bottom: 1px solid #222; background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
+            display: flex; align-items: flex-start; justify-content: space-between;
+            padding: 30px 20px; gap: 15px; margin-bottom: 30px;
         }
         .header-texto { flex: 1; }
         
-        .subtitulo-top { font-size: 0.8rem; color: var(--neon-blue); font-weight: 700; margin-bottom: 5px; }
+        .subtitulo-top { font-size: 0.9rem; color: var(--acento-amarillo); font-weight: 700; margin-bottom: 5px; }
         
+        /* TÍTULO PRINCIPAL: BLANCO PURO SIN RESPLANDOR */
         .titulo-principal {
-            font-size: 2.2rem; line-height: 1; margin-bottom: 10px; color: white;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            font-size: 2.5rem; line-height: 1; margin-bottom: 20px; color: #ffffff; 
         }
-        
-        .mini-contacto { font-size: 0.85rem; color: #ccc; margin-top: 10px; border-left: 3px solid var(--neon-purple); padding-left: 10px; }
-        .header-logo { flex: 0 0 120px; display: flex; justify-content: center; }
-        .logo-img { width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 0 10px white); }
+
+        /* Info de contacto en panel de vidrio */
+        .info-contacto-header {
+            padding: 15px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: #ddd;
+        }
+        .dato-contacto { display: flex; align-items: flex-start; gap: 8px; }
+        .icono { color: var(--acento-amarillo); }
+
+        .header-logo { flex: 0 0 130px; display: flex; justify-content: center; align-items: flex-start; }
+        .logo-img { width: 130px; height: 130px; object-fit: contain; }
 
         /* --- SECCIONES --- */
-        .contenedor-general { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 15px; }
+        .contenedor-general { max-width: 1200px; margin: 0 auto 50px auto; padding: 0 15px; }
 
-        /* --- ALINEACIÓN (CORREGIDO: ALTURA 250px) --- */
-        .alineacion-box {
-            border: 1px solid var(--borde-card); border-radius: 15px; overflow: hidden;
-            background: var(--bg-card);
-        }
+        /* --- ALINEACIÓN (RECTANGULAR 800x250 + PANEL VIDRIO) --- */
+        .alineacion-box { overflow: hidden; } /* Panel de vidrio */
+        
         .alineacion-img {
             width: 100%; 
-            height: 250px; /* MAS ALTO PARA VERSE MEJOR */
+            height: 250px; /* ALTURA FIJA RECTANGULAR */
             position: relative; overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .alineacion-img img {
-            width: 100%; height: 100%; object-fit: cover; object-position: center;
-        }
-        .alineacion-info { padding: 20px; }
-        .alineacion-titulo { font-size: 1.5rem; color: var(--neon-gold); margin-bottom: 10px; text-align: center; }
-        .alineacion-desc { font-size: 0.9rem; color: #ddd; line-height: 1.5; margin-bottom: 20px; text-align: center; }
+        .alineacion-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        
+        .alineacion-info { padding: 25px; }
+        .alineacion-titulo { font-size: 1.6rem; color: var(--acento-amarillo); margin-bottom: 15px; text-align: center; }
+        .alineacion-desc { font-size: 0.95rem; color: #eee; line-height: 1.6; margin-bottom: 25px; text-align: center; }
 
-        /* Precios Alineación */
-        .tabla-precios { display: grid; gap: 8px; background: #050505; padding: 15px; border-radius: 10px; border: 1px solid #333; }
-        .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 8px; }
+        /* Tabla Precios Alineación (Dentro del vidrio) */
+        .tabla-precios { display: grid; gap: 10px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
+        .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
         .fila-precio:last-child { border-bottom: none; }
-        .nombre-servicio { color: #aaa; font-size: 0.9rem; }
+        .nombre-servicio { color: #ccc; font-size: 0.9rem; }
         .valor-servicio { color: white; font-weight: bold; }
-        .fila-combo { margin-top: 5px; background: rgba(255, 215, 0, 0.1); padding: 10px; border-radius: 8px; border: 1px solid var(--neon-gold); }
-        .fila-combo .valor-servicio { color: var(--neon-gold); font-size: 1.2rem; }
+        .fila-combo { margin-top: 5px; background: rgba(255, 215, 0, 0.15); border-color: var(--acento-amarillo); }
+        .fila-combo .valor-servicio { color: var(--acento-amarillo); font-size: 1.2rem; }
 
-        /* --- BANNERS (CON DESCRIPCIÓN VISIBLE) --- */
-        .banner-tira {
-            position: relative; width: 100%; height: 130px;
-            border-radius: 15px; overflow: hidden; margin: 40px 0 20px 0;
-            border: 1px solid #333;
+        /* --- CABECERAS DE SECCIÓN (VIDRIO + LOGO + TÍTULO) --- */
+        .cabecera-seccion-vidrio {
+            display: flex; align-items: center; gap: 15px; padding: 15px 20px; margin-bottom: 25px;
         }
-        .banner-tira img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-        .banner-texto {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.5); z-index: 10; padding: 10px;
-        }
-        .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 0 2px 10px black; text-align: center; margin-bottom: 5px; }
-        .banner-desc { 
-            font-size: 0.85rem; color: #eee; background: rgba(0,0,0,0.6); 
-            padding: 4px 10px; border-radius: 10px; text-align: center;
-        }
-
-        /* --- CABECERA NEUMÁTICOS (SIN BANNER) --- */
-        .cabecera-neon {
-            text-align: center; padding: 20px; margin-bottom: 20px;
-            border: 1px solid var(--neon-green); border-radius: 15px;
-            background: linear-gradient(to bottom, rgba(0, 255, 157, 0.05), transparent);
-        }
-        .cabecera-neon h2 { color: var(--neon-green); font-size: 1.8rem; text-shadow: 0 0 10px var(--neon-green); }
-        .cabecera-neon p { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
+        .logo-mini { width: 50px; height: 50px; object-fit: contain; opacity: 0.8; }
+        .titulo-seccion { font-size: 1.4rem; color: white; }
+        
+        /* Colores específicos por sección */
+        .neu-color { color: var(--acento-verde); }
+        .aceite-color { color: var(--acento-amarillo); }
+        .atf-color { color: var(--acento-rojo); }
 
         /* --- GRILLA --- */
-        .grilla {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-        }
+        .grilla { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
+        /* CARDS (Tarjetas de producto) */
         .card {
             background: var(--bg-card); border: 1px solid var(--borde-card);
             border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
         }
-
-        /* FOTOS CENTRADAS */
         .caja-blanca {
-            background: white; width: 100%; aspect-ratio: 1/1;
-            display: flex; justify-content: center; align-items: center;
-            padding: 8px; box-sizing: border-box;
+            background: white; width: 100%; aspect-ratio: 1/1; display: flex; justify-content: center; align-items: center; padding: 8px; box-sizing: border-box;
         }
         .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
         .info { padding: 12px 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .info h3 { font-size: 0.8rem; color: white; margin-bottom: 5px; line-height: 1.3; min-height: 32px; }
-        
-        .fila-precio-btn {
-            display: flex; justify-content: space-between; align-items: center; margin-top: 5px;
-        }
+        .fila-precio-btn { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
         .precio { font-size: 1rem; font-weight: 800; }
         
         /* BOTÓN COPIAR (ICONO DOBLE CUADRADO) */
         .btn-copiar {
-            background: #222; border: 1px solid #444; color: white;
-            width: 32px; height: 32px; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.2s;
+            background: #333; border: 1px solid #555; color: #ccc; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;
         }
-        .btn-copiar:active { background: var(--neon-green); transform: scale(0.9); }
-        /* SVG del Icono Copiar */
+        .btn-copiar:active { background: var(--acento-verde); color: black; transform: scale(0.9); }
         .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
         /* NEUMÁTICOS */
         .card-neumatico {
-            background: #0a0a0a; border: 1px solid #222; border-bottom: 3px solid var(--neon-green);
+            background: #151515; border: 1px solid #333; border-bottom: 3px solid var(--acento-verde);
             border-radius: 12px; padding: 12px; position: relative;
         }
         .titulo-neu { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; height: 35px; overflow: hidden;}
         .desc-neu { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
-        .precio-neu { font-size: 1.1rem; font-weight: 800; color: var(--neon-green); }
-        .btn-copiar-neu {
-            position: absolute; bottom: 10px; right: 10px;
-            background: #111; border-color: var(--neon-green); color: var(--neon-green);
+        .precio-neu { font-size: 1.1rem; font-weight: 800; color: var(--acento-verde); }
+        .btn-copiar-neu { position: absolute; bottom: 10px; right: 10px; border-color: var(--acento-verde); color: var(--acento-verde); background: transparent; }
+        .btn-copiar-neu:active { background: var(--acento-verde); color: black; }
+
+        /* --- LISTA DE SERVICIOS (ANTES DEL FOOTER) --- */
+        .lista-servicios-container {
+            max-width: 600px; margin: 0 auto 40px auto; padding: 0 20px; text-align: center;
         }
+        .titulo-servicios { font-size: 1.5rem; color: var(--acento-violeta); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;}
+        .lista-servicios { list-style: none; padding: 0; margin: 0; display: inline-block; text-align: left; }
+        .lista-servicios li {
+            padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ddd; font-size: 1rem;
+        }
+        .lista-servicios li:last-child { border-bottom: none; }
+        .bullet { color: var(--acento-violeta); margin-right: 10px; }
 
         /* --- FOOTER --- */
         footer {
-            background: #000; border-top: 1px solid #333;
-            padding: 40px 20px; text-align: center; color: #666; font-size: 0.8rem;
-            margin-top: 40px;
+            background: rgba(0,0,0,0.5); /* Fondo semi-transparente */
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 20px; text-align: center; color: #aaa; font-size: 0.85rem;
+            backdrop-filter: blur(10px);
         }
 
         /* --- MENÚ FLOTANTE (ABAJO) --- */
-        .flotante-container { 
-            position: fixed; bottom: 15px; right: 15px; z-index: 9999; 
-            display: flex; flex-direction: column-reverse; align-items: flex-end; 
-        }
+        .flotante-container { position: fixed; bottom: 15px; right: 15px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
         .btn-menu-principal { 
             width: 55px; height: 55px; border-radius: 50%; font-size: 24px; 
-            background: var(--neon-blue); border: none; cursor: pointer; 
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); color: black; 
+            background: var(--acento-amarillo); border: none; cursor: pointer; 
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); color: black; 
             display: flex; align-items: center; justify-content: center;
         }
         .menu-opciones { 
             margin-bottom: 10px; transform: translateY(10px) scale(0.9); opacity: 0; pointer-events: none; transition: 0.3s; 
-            background: rgba(0,0,0,0.95); border: 1px solid var(--neon-blue); border-radius: 15px; min-width: 160px;
+            background: rgba(0,0,0,0.9); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 160px;
         }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
         .menu-opciones a { padding: 12px 15px; color: white; text-decoration: none; display: block; border-bottom: 1px solid #333; font-size: 0.9rem;}
-
     </style>
 </head>
 <body id="inicio">
 
-    <div class="fondo-animado"><div class="luz-fondo"></div></div>
-
+    <!-- HEADER (Con Info Completa y Panel de Vidrio) -->
     <header class="hero-header">
         <div class="header-texto">
             <span class="subtitulo-top">LUBRICENTRO • GOMERÍA</span>
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
-            <div class="mini-contacto">
-                <div>📞 2995 942 834</div>
-                <div>📍 Rincón de los Sauces</div>
+            
+            <!-- Panel de vidrio para la info de contacto -->
+            <div class="info-contacto-header panel-vidrio">
+                <div class="dato-contacto">
+                    <span class="icono">📍</span>
+                    <span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5. Rincón de los Sauces, Neuquén.</span>
+                </div>
+                <div class="dato-contacto">
+                    <span class="icono">📞</span>
+                    <span>WhatsApp 1: 2995 942 834</span>
+                </div>
+                <div class="dato-contacto">
+                    <span class="icono">📞</span>
+                    <span>WhatsApp 2: 299 471 6353</span>
+                </div>
             </div>
         </div>
         <div class="header-logo">
@@ -232,50 +215,37 @@
         </div>
     </header>
 
+    <!-- ALINEACIÓN (Rectangular 800x250 + Panel Vidrio) -->
     <section class="contenedor-general" id="alineacion">
-        <div class="alineacion-box">
+        <div class="alineacion-box panel-vidrio">
             <div class="alineacion-img">
                 <img src="Alineamiento y balanceo/alineacion.jpg" alt="Alineación">
             </div>
             <div class="alineacion-info">
                 <h3 class="alineacion-titulo">ALINEACIÓN Y BALANCEO</h3>
                 <p class="alineacion-desc">
-                    Servicio técnico profesional en taller. Ajuste de ángulos para seguridad y confort.
+                    Servicio técnico profesional. Ajustamos los ángulos para garantizar seguridad, evitar desgaste y eliminar vibraciones.
                 </p>
                 
                 <div class="tabla-precios">
-                    <div class="fila-precio">
-                        <span class="nombre-servicio">Alineación</span>
-                        <span class="valor-servicio">$15.000</span>
-                    </div>
-                    <div class="fila-precio">
-                        <span class="nombre-servicio">Balanceo (c/u)</span>
-                        <span class="valor-servicio">$5.000</span>
-                    </div>
-                    <div class="fila-precio fila-combo">
-                        <span class="nombre-servicio">COMBO COMPLETO</span>
-                        <span class="valor-servicio">$25.000</span>
-                    </div>
+                    <div class="fila-precio"><span class="nombre-servicio">Alineación</span><span class="valor-servicio">$15.000</span></div>
+                    <div class="fila-precio"><span class="nombre-servicio">Balanceo (c/u)</span><span class="valor-servicio">$5.000</span></div>
+                    <div class="fila-precio fila-combo"><span class="nombre-servicio">COMBO COMPLETO</span><span class="valor-servicio">$25.000</span></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- NEUMÁTICOS (Sin Banner, con Logo y Título Vidrio) -->
     <section class="contenedor-general" id="neumaticos">
-        <div class="cabecera-neon">
-            <h2>NEUMÁTICOS</h2>
-            <p>Venta y Colocación</p>
+        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-verde);">
+            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
+            <h2 class="titulo-seccion neu-color">NEUMÁTICOS</h2>
         </div>
 
         <div class="grilla">
-            <div class="card-neumatico">
-                <div class="titulo-neu">175 65 R14 KPATOS</div>
-                <div class="desc-neu">Balanceo + Válvula</div>
-                <div class="precio-neu">$115.000</div>
-                <button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')">
-                    <svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
+            <!-- 10 NEUMÁTICOS CON BOTÓN COPIAR -->
+            <div class="card-neumatico"><div class="titulo-neu">175 65 R14 KPATOS</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$115.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
             <div class="card-neumatico"><div class="titulo-neu">185 65 R15 Aderenz'a</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Aderenza 185 65 R15 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
             <div class="card-neumatico"><div class="titulo-neu">205 55 R16 Firemax</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Firemax 205 55 R16 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
             <div class="card-neumatico"><div class="titulo-neu">195 55 R15 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Sunset 195 55 R15 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
@@ -288,69 +258,72 @@
         </div>
     </section>
 
+    <!-- ACEITES MOTOR (Sin Banner, con Logo y Título Vidrio) -->
     <section class="contenedor-general" id="aceites">
-        <div class="banner-tira" style="border-color: var(--neon-gold);">
-            <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Aceites">
-            <div class="banner-texto">
-                <h2 style="color: var(--neon-gold);">ACEITES MOTOR</h2>
-                <div class="banner-desc">Minerales y Sintéticos</div>
-            </div>
+        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-amarillo);">
+            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
+            <h2 class="titulo-seccion aceite-color">ACEITES MOTOR</h2>
         </div>
 
         <div class="grilla">
-            <div class="card">
-                <div class="caja-blanca"><img src="aceites pequeños/1.png" alt="1"></div>
-                <div class="info">
-                    <h3>Aceite 1</h3>
-                    <div class="fila-precio-btn">
-                        <span class="precio" style="color: var(--neon-gold);">$15.000</span>
-                        <button class="btn-copiar" onclick="copiar('Aceite 1 - $15.000')">
-                            <svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <!-- 8 ACEITES CON BOTÓN COPIAR -->
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="1"></div><div class="info"><h3>Aceite 1</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 1 - $15.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio aceite-color">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
+    <!-- ATF (Sin Banner, con Logo y Título Vidrio) -->
     <section class="contenedor-general" id="atf">
-        <div class="banner-tira" style="border-color: var(--neon-red);">
-            <img src="Banners/BANNER-ACEITE-ATF.png" alt="ATF">
-            <div class="banner-texto">
-                <h2 style="color: var(--neon-red);">ACEITES ATF</h2>
-                <div class="banner-desc">Transmisión y Dirección</div>
-            </div>
+        <div class="cabecera-seccion-vidrio panel-vidrio" style="border-color: var(--acento-rojo);">
+            <img src="LOGO BLANCO.png" alt="Logo" class="logo-mini">
+            <h2 class="titulo-seccion atf-color">ACEITES ATF</h2>
         </div>
 
         <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <!-- 12 ATF CON BOTÓN COPIAR -->
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio atf-color">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
+    <!-- LISTA DE SERVICIOS (Antes del Footer) -->
+    <div class="lista-servicios-container panel-vidrio">
+        <h3 class="titulo-servicios"><img src="LOGO BLANCO.png" alt="Logo" class="logo-mini" style="width:30px;height:30px;"> SERVICIOS TALLER</h3>
+        <ul class="lista-servicios">
+            <li><span class="bullet">🔧</span> Alineación Láser</li>
+            <li><span class="bullet">⚖️</span> Balanceo Computarizado</li>
+            <li><span class="bullet">🚗</span> Tren Delantero</li>
+            <li><span class="bullet">🛠️</span> Mecánica Ligera</li>
+            <li><span class="bullet">🛑</span> Frenos</li>
+            <li><span class="bullet">🛢️</span> Lubricación</li>
+        </ul>
+    </div>
+
+    <!-- FOOTER COMPLETO -->
     <footer>
         <strong>ULTIMA ESTACIÓN</strong>
-        <span>Rincón de Los Sauces, Neuquén</span>
-        <p style="margin-top: 10px; opacity: 0.5;">© 2024</p>
+        <p>Calle 3. Av. Papa Francisco Frente al CENAF N° 5.<br>Rincón de Los Sauces, Neuquén.</p>
+        <p>📞 2995 942 834  /  📞 299 471 6353</p>
+        <p style="margin-top: 20px; opacity: 0.5; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
     </footer>
 
+    <!-- MENÚ FLOTANTE (Abajo) -->
     <div class="flotante-container">
         <div class="menu-opciones" id="menuDesplegable">
             <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
@@ -369,7 +342,11 @@
 
         function copiar(texto) {
             navigator.clipboard.writeText(texto).then(function() {
-                alert("¡Copiado! " + texto);
+                // Feedback visual simple (opcional)
+                const btn = document.activeElement;
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '✅';
+                setTimeout(() => { btn.innerHTML = originalHTML; }, 1500);
             }, function(err) {
                 console.error('Error al copiar', err);
             });
