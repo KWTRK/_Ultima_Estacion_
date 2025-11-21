@@ -12,10 +12,11 @@
             --bg-tarjeta: #121212;
             --texto-blanco: #ffffff;
             --texto-gris: #b3b3b3;
-            /* Colores de acento NAVEGACIÓN */
+            /* COLORES DE ACENTO */
             --acento-amarillo: #ffd700;
-            --acento-violeta: #c026d3; /* Nuevo color violeta vibrante */
+            --acento-violeta: #c026d3;
             --acento-rojo: #ff4757;
+            --acento-verde: #00e676; /* COLOR PARA NEUMÁTICOS */
         }
 
         html { scroll-behavior: smooth; }
@@ -25,98 +26,54 @@
             color: var(--texto-blanco);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
-            overflow-x: hidden;
-            position: relative;
+            overflow-x: hidden; position: relative;
         }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; }
 
-        /* --- FONDO ANIMADO (Amarillo y Violeta) --- */
-        .fondo-animado {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); overflow: hidden;
-        }
-        .luz {
-            position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3;
-            animation: flotar 20s infinite alternate ease-in-out;
-        }
+        /* --- FONDO ANIMADO --- */
+        .fondo-animado { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); overflow: hidden; }
+        .luz { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3; animation: flotar 20s infinite alternate ease-in-out; }
         .luz-1 { top: 10%; left: 20%; width: 400px; height: 400px; background: var(--acento-amarillo); animation-duration: 25s; }
         .luz-2 { bottom: 20%; right: 10%; width: 500px; height: 500px; background: var(--acento-violeta); animation-delay: -5s; }
+        @keyframes flotar { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(100px, 50px) scale(1.2); } }
 
+        /* --- EFECTO VIDRIO --- */
+        .panel-vidrio { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
 
-        @keyframes flotar {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
-        }
-
-        /* --- CLASE "EFECTO VIDRIO" (Reusable) --- */
-        .panel-vidrio {
-            background: rgba(255, 255, 255, 0.03); /* Muy transparente */
-            backdrop-filter: blur(15px); /* El efecto borroso mágico */
-            -webkit-backdrop-filter: blur(15px); /* Para Safari */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            border-radius: 20px;
-        }
-
-
-        /* --- HEADER PRINCIPAL --- */
-        .hero-header {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 60px 10% 80px 10%;
-            flex-wrap: wrap; gap: 40px; id="inicio";
-        }
-        .header-left { flex: 2; min-width: 300px; }
+        /* --- HEADER --- */
+        .hero-header { display: flex; align-items: center; justify-content: space-between; padding: 40px 5% 60px 5%; flex-wrap: wrap; gap: 20px; }
+        .header-left { flex: 2; min-width: 300px; z-index: 2; }
         .subtitulo-top { font-size: 1.1rem; color: var(--acento-amarillo); font-weight: 600; letter-spacing: 1px; display: block; margin-bottom: 10px;}
-        .titulo-principal {
-            font-size: 4rem; line-height: 1; margin-bottom: 30px;
-            background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        
-        /* Info block ahora usa el efecto vidrio */
-        .info-bloque-header {
-            padding: 30px; border-left: 4px solid var(--acento-amarillo);
-        }
+        .titulo-principal { font-size: 3.5rem; line-height: 1; margin-bottom: 30px; background: linear-gradient(to right, #fff, #aaa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .info-bloque-header { padding: 30px; border-left: 4px solid var(--acento-amarillo); }
         .dato-contacto { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .servicios-lista { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
         .servicios-destacados { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 10px; display: block;}
         .servicios-resto { color: var(--texto-gris); line-height: 1.6; font-size: 1rem; }
-
-        .header-right { flex: 1; display: flex; justify-content: flex-end; min-width: 250px; }
-        .logo-cuadrado {
-            width: 300px; height: 300px; object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-            animation: aparecerLogo 1.5s ease-out;
-        }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; min-width: 300px; }
+        .logo-cuadrado { width: 450px; height: 450px; object-fit: contain; filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15)); animation: aparecerLogo 1.5s ease-out; }
         @keyframes aparecerLogo { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); }}
 
-        /* --- NUEVA SECCIÓN: ALINEACIÓN Y BALANCEO --- */
+        /* --- GENERAL SECCIONES --- */
         .contenedor-general { max-width: 1200px; margin: 100px auto; padding: 0 30px; }
-        
-        .titulo-seccion-principal {
-            font-size: 2.5rem; text-align: center; margin-bottom: 50px;
-            color: var(--acento-violeta); text-shadow: 0 0 20px rgba(192, 38, 211, 0.4);
-        }
+        .titulo-seccion-principal { font-size: 2.5rem; text-align: center; margin-bottom: 50px; color: var(--acento-violeta); text-shadow: 0 0 20px rgba(192, 38, 211, 0.4); }
 
-        .layout-alineacion {
-            display: flex; gap: 40px; align-items: center; /* Centrado vertical */
-        }
+        /* --- ALINEACIÓN --- */
+        .layout-alineacion { display: flex; gap: 40px; align-items: center; }
         .img-alineacion-container { flex: 1; }
-        .img-alineacion-container img {
-            width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #333;
-        }
+        .img-alineacion-container img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #333; }
         .texto-alineacion-panel { flex: 1; padding: 40px; }
         .texto-alineacion-panel h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--acento-amarillo); }
         .texto-alineacion-panel p { color: var(--texto-gris); line-height: 1.8; font-size: 1.1rem; margin-bottom: 15px;}
 
-        /* --- ESTILOS DE CATÁLOGOS --- */
+        /* --- CATÁLOGOS CON IMÁGENES (Aceites) --- */
         .cabecera-categoria { position: relative; border-radius: 20px; overflow: hidden; margin-bottom: 40px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .cabecera-categoria img { width: 100%; height: 250px; object-fit: cover; display: block; opacity: 0.6; transition: 0.3s;}
-        .cabecera-categoria:hover img { opacity: 0.8; transform: scale(1.05); }
-        .texto-cabecera { position: absolute; bottom: 0; left: 0; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); width: 100%; }
-        .texto-cabecera h2 { font-size: 2.2rem; margin-bottom: 5px; text-shadow: 2px 2px 10px black; }
-        
+        .cabecera-categoria img { width: 100%; height: auto; min-height: 200px; object-fit: cover; display: block; opacity: 0.8; transition: 0.3s; }
+        .cabecera-categoria:hover img { opacity: 1; }
+        .texto-cabecera { position: absolute; bottom: 0; left: 0; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); width: 100%; }
+        .texto-cabecera h2 { font-size: 2rem; margin-bottom: 5px; text-shadow: 2px 2px 10px black; }
+
         .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         .card { background: var(--bg-tarjeta); border-radius: 15px; overflow: hidden; border: 1px solid #333; transition: all 0.3s ease; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); border-color: var(--acento-amarillo); box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15); }
@@ -126,57 +83,52 @@
         .info h3 { font-size: 1.1rem; color: white; margin-bottom: 5px; letter-spacing: 1px; }
         .precio { font-size: 1.4rem; font-weight: 800; display: block; margin-top: 10px; }
 
-        /* --- BOTÓN FLOTANTE INTERACTIVO --- */
-        .flotante-container {
-            position: fixed; bottom: 30px; right: 30px; z-index: 9999;
-            display: flex; flex-direction: column-reverse; align-items: flex-end;
+        /* --- ESTILOS ESPECIALES PARA NEUMÁTICOS (TEXTO SOLAMENTE) --- */
+        .card-neumatico {
+            background: #0f0f0f; /* Fondo un poco más oscuro */
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-left: 5px solid var(--acento-verde); /* Borde verde a la izquierda */
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .btn-menu-principal {
-            background: linear-gradient(135deg, var(--acento-amarillo), #f39c12);
-            color: #000; width: 65px; height: 65px; border-radius: 18px; border: none;
-            font-size: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-            transition: transform 0.3s; display: flex; align-items: center; justify-content: center;
+        .card-neumatico:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.2); /* Brillo verde al pasar mouse */
         }
-        .btn-menu-principal:hover { transform: scale(1.1) rotate(90deg); }
-        
-        .menu-opciones {
-            margin-bottom: 15px; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.8);
-            transform-origin: bottom right; transition: all 0.3s ease-in-out; pointer-events: none;
+        /* Icono de rueda decorativo de fondo */
+        .card-neumatico::before {
+            content: "🛞";
+            position: absolute; right: -10px; bottom: -10px;
+            font-size: 5rem; opacity: 0.1; filter: grayscale(100%);
         }
-        .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-        
-        /* El menú también es de vidrio */
-        .menu-vidrio {
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; min-width: 220px;
-        }
-        .menu-opciones a {
-            padding: 15px 20px; text-decoration: none; color: white; font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; transition: background 0.2s;
-        }
-        .menu-opciones a:hover { background: rgba(255,255,255,0.1); color: var(--acento-amarillo); }
-        .menu-opciones a span { margin-right: 15px; font-size: 1.3rem; }
+        .titulo-neumatico { font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 10px; }
+        .desc-neumatico { font-size: 0.95rem; color: #aaa; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        .precio-neumatico { font-size: 1.5rem; font-weight: 800; color: var(--acento-verde); display: block; text-align: right;}
 
-        /* Responsive */
+        /* --- MENÚ --- */
+        .flotante-container { position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
+        .btn-menu-principal { background: linear-gradient(135deg, var(--acento-amarillo), #f39c12); color: #000; width: 65px; height: 65px; border-radius: 18px; border: none; font-size: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); transition: transform 0.3s; display: flex; align-items: center; justify-content: center; }
+        .btn-menu-principal:hover { transform: scale(1.1) rotate(90deg); }
+        .menu-opciones { margin-bottom: 15px; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.8); transform-origin: bottom right; transition: all 0.3s ease-in-out; pointer-events: none; }
+        .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        .menu-vidrio { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; min-width: 220px; }
+        .menu-opciones a { padding: 15px 20px; text-decoration: none; color: white; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; }
+        .menu-opciones a:hover { background: rgba(255,255,255,0.1); color: var(--acento-amarillo); }
+
         @media (max-width: 768px) {
             .hero-header { flex-direction: column-reverse; text-align: center; padding: 40px 20px; }
-            .header-left { text-align: center; }
-            .header-right { justify-content: center; margin-bottom: 20px; }
-            .titulo-principal { font-size: 3rem; }
-            .logo-cuadrado { width: 200px; height: 200px; }
-            
-            /* Alineación vertical en celular */
+            .titulo-principal { font-size: 2.5rem; }
+            .logo-cuadrado { width: 250px; height: 250px; }
             .layout-alineacion { flex-direction: column; }
-            .texto-alineacion-panel { padding: 30px 20px; }
         }
     </style>
 </head>
 <body id="inicio">
 
-    <div class="fondo-animado">
-        <div class="luz luz-1"></div>
-        <div class="luz luz-2"></div>
-    </div>
+    <div class="fondo-animado"><div class="luz luz-1"></div><div class="luz luz-2"></div></div>
 
     <header class="hero-header">
         <div class="header-left">
@@ -184,56 +136,112 @@
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
             
             <div class="info-bloque-header panel-vidrio">
-                <div class="dato-contacto">
-                    <span style="color: var(--acento-amarillo);">📞</span>
-                    <strong>2995 942 834  /  299 471 6353</strong>
-                </div>
-                <div class="dato-contacto">
-                    <span style="color: var(--acento-amarillo);">📍</span>
-                    <span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5</span>
-                </div>
-
+                <div class="dato-contacto"><span style="color: var(--acento-amarillo);">📞</span><strong>2995 942 834  /  299 471 6353</strong></div>
+                <div class="dato-contacto"><span style="color: var(--acento-amarillo);">📍</span><span>Calle 3. Av. Papa Francisco Frente al CENAF N° 5</span></div>
                 <div class="servicios-lista">
                     <span class="servicios-destacados">Cubiertas, Filtros y Servicio</span>
-                    <p class="servicios-resto">
-                        Alineamiento • Balanceo • Gomería • Rodamientos • Suspensión • Tren Delantero • Cambio de Filtros y Aceite.
-                    </p>
+                    <p class="servicios-resto">Alineamiento • Balanceo • Gomería • Rodamientos • Suspensión • Tren Delantero • Cambio de Filtros y Aceite.</p>
                 </div>
             </div>
         </div>
         <div class="header-right">
-            <img src="LOGO BLANCO.png" alt="Logo Ultima Estación" class="logo-cuadrado">
+            <img src="LOGO BLANCO.png" alt="Logo" class="logo-cuadrado">
         </div>
     </header>
 
-
     <section class="contenedor-general" id="alineacion">
-        <h2 class="titulo-seccion-principal">SERVICIOS ESPECIALIZADOS</h2>
-        
+        <h2 class="titulo-seccion-principal" style="color: var(--acento-violeta);">SERVICIOS DE TALLER</h2>
         <div class="layout-alineacion">
             <div class="img-alineacion-container">
-                <img src="alineacion.jpg" alt="Alineación 3D y Balanceo">
+                <img src="Alineamiento y balanceo/alineacion.jpg" alt="Alineación">
             </div>
-            
             <div class="texto-alineacion-panel panel-vidrio">
-                <h3>Alineación 3D y Balanceo Computarizado</h3>
-                <p>Utilizamos tecnología de última generación para asegurar el contacto perfecto de tus neumáticos con el camino.</p>
-                <p>✅ Mejora la estabilidad y el manejo.<br>
-                   ✅ Evita el desgaste irregular de cubiertas.<br>
-                   ✅ Elimina vibraciones en el volante a alta velocidad.</p>
-                <p style="margin-top: 20px; font-weight: bold; color: white;">Recomendado cada 10.000 km o al cambiar cubiertas.</p>
+                <h3>Alineación y Balanceo</h3>
+                <p>En Ultima Estación realizamos este servicio fundamental para el cuidado de tu vehículo. Contamos con el equipamiento necesario en nuestro taller.</p>
+                <p>✅ Correcta pisada del neumático.<br>
+                   ✅ Estabilidad en el manejo.<br>
+                   ✅ Eliminación de vibraciones.</p>
+                <p style="margin-top: 20px; color: white; font-weight: bold;">¡Trae tu vehículo y lo revisamos!</p>
             </div>
         </div>
     </section>
 
+    <section class="contenedor-general" id="neumaticos">
+        <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-verde);">
+             <div class="texto-cabecera" style="position: relative; background: transparent; padding: 40px; text-align: center;">
+                <h2 style="color: var(--acento-verde); text-shadow: 0 0 20px rgba(0,230,118,0.5);">NEUMÁTICOS Y CUBIERTAS</h2>
+                <p>Venta de neumáticos para autos, camionetas y motos.</p>
+            </div>
+        </div>
+
+        <div class="grilla">
+            
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">175 65 R14 - KPATOS</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula</div>
+                <div class="precio-neumatico">$115.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">185 65 R15 Aderenz'a</div>
+                <div class="desc-neumatico">Incluye Balanceo & Válvula</div>
+                <div class="precio-neumatico">$120.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">205 55 R16 - Firemax</div>
+                <div class="desc-neumatico">Incluye Balanceo & Válvula</div>
+                <div class="precio-neumatico">$135.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">195 55 R15 Sunset 85V</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula Nueva</div>
+                <div class="precio-neumatico">$135.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">185 60 R14. Sunset 82H</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula</div>
+                <div class="precio-neumatico">$120.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">2.75 R14 Moto 110</div>
+                <div class="desc-neumatico">Cubierta de Moto</div>
+                <div class="precio-neumatico">$54.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">185/65R15 Ling Long</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula</div>
+                <div class="precio-neumatico">$120.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">175 70 R13 Ling Long H/T</div>
+                <div class="desc-neumatico">Incluye Balanceo y Válvula</div>
+                <div class="precio-neumatico">$115.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">225 70 R17 Ling Long H/T</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula</div>
+                <div class="precio-neumatico">$180.000</div>
+            </div>
+
+            <div class="card-neumatico">
+                <div class="titulo-neumatico">185 65 R14 KPATOS</div>
+                <div class="desc-neumatico">Incluye Balanceo + Válvula</div>
+                <div class="precio-neumatico">$123.000</div>
+            </div>
+
+        </div>
+    </section>
 
     <div class="contenedor-general" id="aceites">
         <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-amarillo);">
-            <img src="imagenes/banner_aceites.jpg" alt="Portada Aceites">
-            <div class="texto-cabecera">
-                <h2 style="color: var(--acento-amarillo);">ACEITES DE MOTOR</h2>
-                <p>Lubricantes minerales, semi-sintéticos y sintéticos.</p>
-            </div>
+            <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Portada Aceites">
         </div>
         <div class="grilla">
             <div class="card"><div class="caja-blanca"><img src="aceites pequeños/1.png" alt="Aceite"></div><div class="info"><h3>NOMBRE ACEITE 1</h3><span class="precio" style="color: var(--acento-amarillo);">$00.000</span></div></div>
@@ -249,14 +257,10 @@
 
     <div class="contenedor-general" id="atf">
         <div class="cabecera-categoria" style="border-bottom: 4px solid var(--acento-rojo);">
-            <img src="imagenes/banner_atf.jpg" alt="Portada ATF">
-            <div class="texto-cabecera">
-                <h2 style="color: var(--acento-rojo);">ACEITES ATF</h2>
-                <p>Fluidos para transmisión automática y dirección hidráulica.</p>
-            </div>
+            <img src="Banners/BANNER-ACEITE-ATF.png" alt="Portada ATF">
         </div>
         <div class="grilla">
-             <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 1</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 2</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 3</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="ATF"></div><div class="info"><h3>NOMBRE ATF 4</h3><span class="precio" style="color: var(--acento-rojo);">$00.000</span></div></div>
@@ -275,17 +279,14 @@
         <div class="menu-opciones menu-vidrio" id="menuDesplegable">
             <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
             <a href="#alineacion" onclick="toggleMenu()">🔧 Alineación</a>
-            <a href="#aceites" onclick="toggleMenu()">🛢️ Aceites Motor</a>
-            <a href="#atf" onclick="toggleMenu()">⚙️ Aceites ATF</a>
+            <a href="#neumaticos" onclick="toggleMenu()">🛞 Neumáticos</a>
+            <a href="#aceites" onclick="toggleMenu()">🛢️ Aceites</a>
+            <a href="#atf" onclick="toggleMenu()">⚙️ ATF</a>
         </div>
         <button class="btn-menu-principal" onclick="toggleMenu()">☰</button>
     </div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById("menuDesplegable").classList.toggle("activo");
-        }
-    </script>
+    <script>function toggleMenu(){document.getElementById("menuDesplegable").classList.toggle("activo");}</script>
 
 </body>
 </html>
