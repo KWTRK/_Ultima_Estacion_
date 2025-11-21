@@ -8,210 +8,215 @@
     <style>
         /* --- NUEVA PALETA "CYBER DARK" --- */
         :root {
-            --bg-fondo: #000000;
-            --bg-card: #0f0f0f; /* Casi negro, para contraste */
+            --bg-fondo: #050505; /* Negro profundo para todo el fondo */
+            --bg-card: #111111; 
             --borde-card: #222;
             
-            /* Colores Neón Brillantes */
+            /* Neón */
             --neon-blue: #00f3ff;
             --neon-purple: #bc13fe;
-            --neon-green: #00ff9d;
+            --neon-green: #00e676;
             --neon-gold: #ffd700;
+            --neon-red: #ff4757;
             
             --texto-blanco: #ffffff;
-            --texto-gris: #aaaaaa;
+            --texto-gris: #bbbbbb;
         }
 
-        html { scroll-behavior: smooth; }
+        html { 
+            scroll-behavior: smooth; 
+            background-color: var(--bg-fondo); /* ARREGLA EL HUECO DE ABAJO */
+            height: 100%;
+        }
+        
         body {
             background-color: var(--bg-fondo);
             color: var(--texto-blanco);
             font-family: 'Inter', sans-serif;
             margin: 0; padding: 0;
             overflow-x: hidden; position: relative;
-            padding-bottom: 100px;
+            min-height: 100vh;
+            padding-bottom: 100px; /* Espacio para que no se corte el final */
         }
 
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
 
-        /* --- FONDO CON DEGRADADO SUTIL --- */
+        /* --- FONDO ANIMADO --- */
         .fondo-animado {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 80%);
+            background: radial-gradient(circle at 50% 50%, #151515 0%, #000000 100%);
+        }
+        
+        /* Transición suave de colores de fondo */
+        @keyframes cambioColor {
+            0% { background: rgba(255, 71, 87, 0.15); } /* Rojo */
+            33% { background: rgba(0, 243, 255, 0.15); } /* Azul */
+            66% { background: rgba(0, 230, 118, 0.15); } /* Verde */
+            100% { background: rgba(255, 71, 87, 0.15); } /* Rojo */
         }
 
-        /* --- HEADER MEJORADO (Texto legible) --- */
+        .luz-fondo {
+            position: absolute; top: 20%; left: 10%; width: 80%; height: 60%;
+            filter: blur(120px); border-radius: 50%;
+            animation: cambioColor 10s infinite linear alternate;
+        }
+
+        /* --- HEADER --- */
         .hero-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 30px 20px; gap: 15px; margin-bottom: 20px;
-            border-bottom: 1px solid #222; background: rgba(0,0,0,0.8);
+            border-bottom: 1px solid #222; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
         }
         .header-texto { flex: 1; }
         
         .subtitulo-top { font-size: 0.8rem; color: var(--neon-blue); font-weight: 700; margin-bottom: 5px; }
         
-        /* CORRECCIÓN TITULO: BLANCO BRILLANTE */
         .titulo-principal {
-            font-size: 2.5rem; line-height: 1; margin-bottom: 15px;
-            color: white;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6); /* Resplandor Azul */
+            font-size: 2.2rem; line-height: 1; margin-bottom: 10px; color: white;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
         }
         
-        .mini-contacto { font-size: 0.9rem; color: #ccc; margin-top: 10px; border-left: 3px solid var(--neon-purple); padding-left: 10px; }
+        .mini-contacto { font-size: 0.85rem; color: #ccc; margin-top: 10px; border-left: 3px solid var(--neon-purple); padding-left: 10px; }
         .header-logo { flex: 0 0 120px; display: flex; justify-content: center; }
         .logo-img { width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 0 10px white); }
 
         /* --- SECCIONES --- */
         .contenedor-general { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 15px; }
 
-        /* --- ALINEACIÓN (CORREGIDO: RECTANGULAR + PRECIOS) --- */
+        /* --- ALINEACIÓN (CORREGIDO: ALTURA 250px) --- */
         .alineacion-box {
             border: 1px solid var(--borde-card); border-radius: 15px; overflow: hidden;
             background: var(--bg-card);
         }
         .alineacion-img {
-            width: 100%; height: 200px; /* Rectangular panorámico */
+            width: 100%; 
+            height: 250px; /* MAS ALTO PARA VERSE MEJOR */
             position: relative; overflow: hidden;
         }
         .alineacion-img img {
-            width: 100%; height: 100%; object-fit: cover; /* Cubre todo el rectángulo sin deformar */
-            object-position: center;
+            width: 100%; height: 100%; object-fit: cover; object-position: center;
         }
-        .alineacion-info { padding: 25px; }
-        .alineacion-titulo { font-size: 1.6rem; color: var(--neon-gold); margin-bottom: 15px; text-align: center; }
-        .alineacion-desc { font-size: 0.95rem; color: #ddd; line-height: 1.6; margin-bottom: 25px; text-align: center; }
+        .alineacion-info { padding: 20px; }
+        .alineacion-titulo { font-size: 1.5rem; color: var(--neon-gold); margin-bottom: 10px; text-align: center; }
+        .alineacion-desc { font-size: 0.9rem; color: #ddd; line-height: 1.5; margin-bottom: 20px; text-align: center; }
 
-        /* TABLA DE PRECIOS ALINEACIÓN */
-        .tabla-precios {
-            display: grid; gap: 10px;
-            background: #000; padding: 15px; border-radius: 10px; border: 1px solid #333;
-        }
-        .fila-precio {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #222; padding-bottom: 8px; margin-bottom: 5px;
-        }
-        .fila-precio:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        /* Precios Alineación */
+        .tabla-precios { display: grid; gap: 8px; background: #050505; padding: 15px; border-radius: 10px; border: 1px solid #333; }
+        .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 8px; }
+        .fila-precio:last-child { border-bottom: none; }
         .nombre-servicio { color: #aaa; font-size: 0.9rem; }
-        .valor-servicio { color: white; font-weight: bold; font-size: 1.1rem; }
-        
-        /* PRECIO COMBO DESTACADO */
-        .fila-combo { margin-top: 10px; background: rgba(255, 215, 0, 0.1); padding: 10px; border-radius: 8px; border: 1px solid var(--neon-gold); }
-        .fila-combo .nombre-servicio { color: var(--neon-gold); font-weight: 800; text-transform: uppercase; }
-        .fila-combo .valor-servicio { color: var(--neon-gold); font-size: 1.4rem; text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+        .valor-servicio { color: white; font-weight: bold; }
+        .fila-combo { margin-top: 5px; background: rgba(255, 215, 0, 0.1); padding: 10px; border-radius: 8px; border: 1px solid var(--neon-gold); }
+        .fila-combo .valor-servicio { color: var(--neon-gold); font-size: 1.2rem; }
 
-        /* --- BANNERS (TITULOS CENTRADOS) --- */
+        /* --- BANNERS (CON DESCRIPCIÓN VISIBLE) --- */
         .banner-tira {
-            position: relative; width: 100%; height: 120px; /* Tira delgada */
+            position: relative; width: 100%; height: 130px;
             border-radius: 15px; overflow: hidden; margin: 40px 0 20px 0;
             border: 1px solid #333;
         }
         .banner-tira img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
         .banner-texto {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; /* TOTALMENTE CENTRADO */
-            background: rgba(0,0,0,0.4); z-index: 10;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.5); z-index: 10; padding: 10px;
         }
-        .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 0 2px 10px black; text-align: center; }
-        .banner-texto p { color: #eee; font-size: 0.9rem; margin-top: 5px; }
+        .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 0 2px 10px black; text-align: center; margin-bottom: 5px; }
+        .banner-desc { 
+            font-size: 0.85rem; color: #eee; background: rgba(0,0,0,0.6); 
+            padding: 4px 10px; border-radius: 10px; text-align: center;
+        }
 
-        /* --- CABECERA SIMPLE NEUMÁTICOS --- */
+        /* --- CABECERA NEUMÁTICOS (SIN BANNER) --- */
         .cabecera-neon {
             text-align: center; padding: 20px; margin-bottom: 20px;
             border: 1px solid var(--neon-green); border-radius: 15px;
             background: linear-gradient(to bottom, rgba(0, 255, 157, 0.05), transparent);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
         }
         .cabecera-neon h2 { color: var(--neon-green); font-size: 1.8rem; text-shadow: 0 0 10px var(--neon-green); }
+        .cabecera-neon p { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
 
-        /* --- GRILLA PRODUCTOS (CENTRADOS PERFECTOS) --- */
+        /* --- GRILLA --- */
         .grilla {
-            display: grid;
-            /* 2 Columnas en celular, ajustado para que no se rompa */
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
         }
 
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--borde-card);
-            border-radius: 12px; overflow: hidden;
-            display: flex; flex-direction: column;
-            position: relative;
+            background: var(--bg-card); border: 1px solid var(--borde-card);
+            border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
         }
 
-        /* CAJA BLANCA: Centrado Perfecto de Imagen */
+        /* FOTOS CENTRADAS */
         .caja-blanca {
-            background: white;
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Cuadrado perfecto */
-            display: flex;
-            justify-content: center; /* Centra horizontal */
-            align-items: center; /* Centra vertical */
-            padding: 10px;
-            box-sizing: border-box;
+            background: white; width: 100%; aspect-ratio: 1/1;
+            display: flex; justify-content: center; align-items: center;
+            padding: 8px; box-sizing: border-box;
         }
-        .caja-blanca img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* La imagen entra entera sin cortarse */
-            display: block;
-        }
+        .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        .info { padding: 12px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .info h3 { font-size: 0.85rem; color: white; margin-bottom: 5px; line-height: 1.3; min-height: 35px; }
+        .info { padding: 12px 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .info h3 { font-size: 0.8rem; color: white; margin-bottom: 5px; line-height: 1.3; min-height: 32px; }
         
         .fila-precio-btn {
-            display: flex; justify-content: space-between; align-items: flex-end; margin-top: 5px;
+            display: flex; justify-content: space-between; align-items: center; margin-top: 5px;
         }
-        .precio { font-size: 1.1rem; font-weight: 800; display: block; }
+        .precio { font-size: 1rem; font-weight: 800; }
         
-        /* BOTÓN DE COPIAR */
+        /* BOTÓN COPIAR (ICONO DOBLE CUADRADO) */
         .btn-copiar {
-            background: #333; border: 1px solid #555; color: white;
-            width: 30px; height: 30px; border-radius: 8px;
+            background: #222; border: 1px solid #444; color: white;
+            width: 32px; height: 32px; border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 14px; transition: 0.2s;
+            cursor: pointer; transition: 0.2s;
         }
-        .btn-copiar:active { background: var(--neon-green); border-color: var(--neon-green); transform: scale(0.9); }
+        .btn-copiar:active { background: var(--neon-green); transform: scale(0.9); }
+        /* SVG del Icono Copiar */
+        .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-        /* ESTILO ESPECÍFICO NEUMÁTICOS */
+        /* NEUMÁTICOS */
         .card-neumatico {
             background: #0a0a0a; border: 1px solid #222; border-bottom: 3px solid var(--neon-green);
-            border-radius: 12px; padding: 15px; position: relative;
+            border-radius: 12px; padding: 12px; position: relative;
         }
-        .titulo-neu { font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 5px; height: 40px; overflow: hidden;}
-        .desc-neu { font-size: 0.75rem; color: #888; margin-bottom: 10px; }
-        .precio-neu { font-size: 1.2rem; font-weight: 800; color: var(--acento-verde); }
+        .titulo-neu { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; height: 35px; overflow: hidden;}
+        .desc-neu { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
+        .precio-neu { font-size: 1.1rem; font-weight: 800; color: var(--neon-green); }
         .btn-copiar-neu {
             position: absolute; bottom: 10px; right: 10px;
-            background: #222; color: var(--neon-green); border: 1px solid var(--neon-green);
+            background: #111; border-color: var(--neon-green); color: var(--neon-green);
         }
 
         /* --- FOOTER --- */
         footer {
             background: #000; border-top: 1px solid #333;
-            padding: 30px 20px; text-align: center; color: #666; font-size: 0.85rem;
+            padding: 40px 20px; text-align: center; color: #666; font-size: 0.8rem;
             margin-top: 40px;
         }
 
-        /* --- MENÚ FLOTANTE --- */
-        .flotante-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
-        .btn-menu-principal { width: 55px; height: 55px; border-radius: 50%; font-size: 24px; background: var(--neon-blue); border: none; cursor: pointer; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); color: black; display: flex; align-items: center; justify-content: center;}
-        .menu-opciones { margin-bottom: 10px; transform: translateY(10px) scale(0.9); opacity: 0; pointer-events: none; transition: 0.3s; background: rgba(0,0,0,0.9); border: 1px solid var(--neon-blue); border-radius: 15px; min-width: 180px;}
-        .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-        .menu-opciones a { padding: 12px 15px; color: white; text-decoration: none; display: block; border-bottom: 1px solid #333; }
-
-        /* Media Query Extra Pequeño */
-        @media (max-width: 360px) {
-            .titulo-principal { font-size: 2rem; }
-            .grilla { gap: 8px; }
-            .info h3 { font-size: 0.8rem; }
+        /* --- MENÚ FLOTANTE (ABAJO) --- */
+        .flotante-container { 
+            position: fixed; bottom: 15px; right: 15px; z-index: 9999; 
+            display: flex; flex-direction: column-reverse; align-items: flex-end; 
         }
+        .btn-menu-principal { 
+            width: 55px; height: 55px; border-radius: 50%; font-size: 24px; 
+            background: var(--neon-blue); border: none; cursor: pointer; 
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); color: black; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .menu-opciones { 
+            margin-bottom: 10px; transform: translateY(10px) scale(0.9); opacity: 0; pointer-events: none; transition: 0.3s; 
+            background: rgba(0,0,0,0.95); border: 1px solid var(--neon-blue); border-radius: 15px; min-width: 160px;
+        }
+        .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+        .menu-opciones a { padding: 12px 15px; color: white; text-decoration: none; display: block; border-bottom: 1px solid #333; font-size: 0.9rem;}
+
     </style>
 </head>
 <body id="inicio">
 
-    <div class="fondo-animado"></div>
+    <div class="fondo-animado"><div class="luz-fondo"></div></div>
 
     <header class="hero-header">
         <div class="header-texto">
@@ -235,16 +240,16 @@
             <div class="alineacion-info">
                 <h3 class="alineacion-titulo">ALINEACIÓN Y BALANCEO</h3>
                 <p class="alineacion-desc">
-                    Servicio técnico profesional. Ajustamos los ángulos de las ruedas para garantizar seguridad, evitar el desgaste de cubiertas y eliminar vibraciones.
+                    Servicio técnico profesional en taller. Ajuste de ángulos para seguridad y confort.
                 </p>
                 
                 <div class="tabla-precios">
                     <div class="fila-precio">
-                        <span class="nombre-servicio">Solo Alineación</span>
+                        <span class="nombre-servicio">Alineación</span>
                         <span class="valor-servicio">$15.000</span>
                     </div>
                     <div class="fila-precio">
-                        <span class="nombre-servicio">Solo Balanceo (x rueda)</span>
+                        <span class="nombre-servicio">Balanceo (c/u)</span>
                         <span class="valor-servicio">$5.000</span>
                     </div>
                     <div class="fila-precio fila-combo">
@@ -259,7 +264,7 @@
     <section class="contenedor-general" id="neumaticos">
         <div class="cabecera-neon">
             <h2>NEUMÁTICOS</h2>
-            <span style="color:#aaa; font-size:0.9rem;">Venta y Colocación</span>
+            <p>Venta y Colocación</p>
         </div>
 
         <div class="grilla">
@@ -267,17 +272,19 @@
                 <div class="titulo-neu">175 65 R14 KPATOS</div>
                 <div class="desc-neu">Balanceo + Válvula</div>
                 <div class="precio-neu">$115.000</div>
-                <button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')">📋</button>
+                <button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático KPATOS 175 65 R14 - $115.000')">
+                    <svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
             </div>
-            <div class="card-neumatico"><div class="titulo-neu">185 65 R15 Aderenz'a</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Aderenza 185 65 R15 - $120.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">205 55 R16 Firemax</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Firemax 205 55 R16 - $135.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">195 55 R15 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Sunset 195 55 R15 - $135.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">185 60 R14 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Sunset 185 60 R14 - $120.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">Moto 2.75 R14</div><div class="desc-neu">Cubierta Moto</div><div class="precio-neu">$54.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Cubierta Moto 2.75 R14 - $54.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">185/65 R15 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 185/65 R15 - $120.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">175 70 R13 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$115.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 175 70 R13 - $115.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">225 70 R17 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$180.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 225 70 R17 - $180.000')">📋</button></div>
-            <div class="card-neumatico"><div class="titulo-neu">185 65 R14 KPATOS</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$123.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('KPATOS 185 65 R14 - $123.000')">📋</button></div>
+            <div class="card-neumatico"><div class="titulo-neu">185 65 R15 Aderenz'a</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Aderenza 185 65 R15 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">205 55 R16 Firemax</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Firemax 205 55 R16 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">195 55 R15 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$135.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Sunset 195 55 R15 - $135.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">185 60 R14 Sunset</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Neumático Sunset 185 60 R14 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">Moto 2.75 R14</div><div class="desc-neu">Cubierta Moto</div><div class="precio-neu">$54.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Cubierta Moto 2.75 R14 - $54.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">185/65 R15 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$120.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 185/65 R15 - $120.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">175 70 R13 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$115.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 175 70 R13 - $115.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">225 70 R17 Ling Long</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$180.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('Ling Long 225 70 R17 - $180.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+            <div class="card-neumatico"><div class="titulo-neu">185 65 R14 KPATOS</div><div class="desc-neu">Balanceo + Válvula</div><div class="precio-neu">$123.000</div><button class="btn-copiar btn-copiar-neu" onclick="copiar('KPATOS 185 65 R14 - $123.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div>
         </div>
     </section>
 
@@ -286,6 +293,7 @@
             <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Aceites">
             <div class="banner-texto">
                 <h2 style="color: var(--neon-gold);">ACEITES MOTOR</h2>
+                <div class="banner-desc">Minerales y Sintéticos</div>
             </div>
         </div>
 
@@ -296,41 +304,44 @@
                     <h3>Aceite 1</h3>
                     <div class="fila-precio-btn">
                         <span class="precio" style="color: var(--neon-gold);">$15.000</span>
-                        <button class="btn-copiar" onclick="copiar('Aceite 1 - $15.000')">📋</button>
+                        <button class="btn-copiar" onclick="copiar('Aceite 1 - $15.000')">
+                            <svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7 - $15.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8 - $15.000')">📋</button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/2.png" alt="2"></div><div class="info"><h3>Aceite 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/3.png" alt="3"></div><div class="info"><h3>Aceite 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/4.png" alt="4"></div><div class="info"><h3>Aceite 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/5.png" alt="5"></div><div class="info"><h3>Aceite 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/6.png" alt="6"></div><div class="info"><h3>Aceite 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/7.png" alt="7"></div><div class="info"><h3>Aceite 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="aceites pequeños/8.png" alt="8"></div><div class="info"><h3>Aceite 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-gold);">$15.000</span><button class="btn-copiar" onclick="copiar('Aceite 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
     <section class="contenedor-general" id="atf">
-        <div class="banner-tira" style="border-color: var(--acento-rojo);">
+        <div class="banner-tira" style="border-color: var(--neon-red);">
             <img src="Banners/BANNER-ACEITE-ATF.png" alt="ATF">
             <div class="banner-texto">
-                <h2 style="color: var(--acento-rojo);">ACEITES ATF</h2>
+                <h2 style="color: var(--neon-red);">ACEITES ATF</h2>
+                <div class="banner-desc">Transmisión y Dirección</div>
             </div>
         </div>
 
         <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11 - $10.000')">📋</button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--acento-rojo);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12 - $10.000')">📋</button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>ATF 1</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 1')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>ATF 2</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 2')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>ATF 3</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 3')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>ATF 4</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 4')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>ATF 5</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 5')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF 6</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 6')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 7')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 8')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 9')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF 10</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 10')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>ATF 11</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 11')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>ATF 12</h3><div class="fila-precio-btn"><span class="precio" style="color: var(--neon-red);">$10.000</span><button class="btn-copiar" onclick="copiar('ATF 12')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
