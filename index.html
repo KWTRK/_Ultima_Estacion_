@@ -6,13 +6,13 @@
     <title>Taller Ultima Estación</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* --- PALETA DE COLORES --- */
+        /* --- PALETA DE COLORES CYBER DARK --- */
         :root {
             --bg-fondo: #100a1e;
             --bg-card: #1a1a1a;
             --borde-card: #333;
             
-            /* Acentos */
+            /* Acentos Neón */
             --acento-amarillo: #ffd700;
             --acento-violeta: #9d4edd;
             --acento-verde: #00e676;
@@ -20,7 +20,6 @@
             --acento-azul: #00f3ff;
             --acento-naranja: #ff9f43;
             --acento-celeste: #00d2d3;
-            --whatsapp-green: #25d366;
             
             --texto-blanco: #ffffff;
             --texto-gris: #dddddd;
@@ -41,7 +40,7 @@
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
 
-        /* LOGO FONDO */
+        /* LOGO MARCA DE AGUA */
         .logo-fondo {
             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
             width: 80%; max-width: 600px; opacity: 0.05; pointer-events: none; z-index: -1;
@@ -57,32 +56,37 @@
         .hero-header {
             display: flex; align-items: center; justify-content: space-between;
             padding: 40px 20px; gap: 20px; margin-bottom: 30px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
         }
         .header-texto { flex: 1; padding-left: 5px; }
         
-        .subtitulo-top { font-size: 0.75rem; color: var(--acento-amarillo); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 5px; }
-        .titulo-principal { font-size: 2.2rem; line-height: 1; margin-bottom: 15px; color: #ffffff; }
+        .subtitulo-top { font-size: 0.8rem; color: var(--acento-amarillo); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .titulo-principal { font-size: 2.2rem; line-height: 1.1; margin-bottom: 15px; color: #ffffff; }
         
         .info-contacto-header {
-            display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #ddd;
+            display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: #ddd;
             border-left: 3px solid var(--acento-rojo); padding-left: 15px;
         }
-        .dato-contacto { display: flex; align-items: flex-start; gap: 8px; }
-        .icono { color: var(--acento-rojo); font-weight: bold; }
-        .header-logo { flex: 0 0 120px; display: flex; justify-content: center; }
-        .logo-img { width: 120px; height: 120px; object-fit: contain; }
+        .dato-contacto { display: flex; align-items: flex-start; gap: 10px; }
+        .icono { color: var(--acento-rojo); font-weight: bold; font-size: 1.2rem; min-width: 20px; text-align: center;}
+        .texto-dato strong { display: block; color: white; font-size: 0.95rem; }
+        .texto-dato span { font-size: 0.85rem; color: #bbb; }
+
+        .header-logo { flex: 0 0 130px; display: flex; justify-content: center; }
+        .logo-img { width: 130px; height: 130px; object-fit: contain; }
 
         /* --- SECCIONES --- */
         .contenedor-general { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 15px; }
 
-        /* ALINEACIÓN */
+        /* ALINEACIÓN (Rectangular) */
         .alineacion-container { display: flex; flex-direction: column; gap: 20px; }
         .alineacion-img-box { width: 100%; border-radius: 15px; overflow: hidden; border: 1px solid #333; }
         .alineacion-img-box img { width: 100%; height: auto; display: block; }
+        
         .alineacion-info-box { padding: 25px; text-align: center; }
         .alineacion-titulo { font-size: 1.8rem; color: var(--acento-amarillo); margin-bottom: 15px; }
         .alineacion-desc { font-size: 1rem; color: #eee; line-height: 1.6; margin-bottom: 25px; text-align: left; }
+        
         .tabla-precios { display: grid; gap: 10px; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
         .fila-precio { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
         .fila-precio:last-child { border-bottom: none; padding-bottom: 0; }
@@ -92,68 +96,55 @@
         .fila-combo .nombre-servicio { color: var(--acento-amarillo); font-weight: 800; text-transform: uppercase; }
         .fila-combo .valor-servicio { color: var(--acento-amarillo); font-size: 1.5rem; }
 
-        /* CABECERAS SECCIONES */
+        /* CABECERAS DE SECCIÓN */
         .cabecera-simple-vidrio { display: flex; align-items: center; gap: 15px; padding: 15px 20px; margin-bottom: 25px; border-bottom: 4px solid; }
         .logo-mini { width: 40px; height: 40px; object-fit: contain; opacity: 0.9; }
         .titulo-seccion { font-size: 1.5rem; color: white; flex-grow: 1; }
         .mini-desc-seccion { font-size: 0.8rem; color: #aaa; text-transform: none; font-weight: 400; display: block; margin-top: 2px;}
 
-        /* Colores */
-        .borde-verde { border-color: var(--acento-verde); }
-        .borde-amarillo { border-color: var(--acento-amarillo); }
-        .borde-rojo { border-color: var(--acento-rojo); }
-        .borde-azul { border-color: var(--acento-azul); }
-        .borde-naranja { border-color: var(--acento-naranja); }
-        .borde-celeste { border-color: var(--acento-celeste); }
-        
-        .text-verde { color: var(--acento-verde); }
-        .text-amarillo { color: var(--acento-amarillo); }
-        .text-rojo { color: var(--acento-rojo); }
-        .text-azul { color: var(--acento-azul); }
-        .text-naranja { color: var(--acento-naranja); }
-        .text-celeste { color: var(--acento-celeste); }
+        /* Colores de Borde y Texto */
+        .borde-verde { border-color: var(--acento-verde); } .text-verde { color: var(--acento-verde); }
+        .borde-amarillo { border-color: var(--acento-amarillo); } .text-amarillo { color: var(--acento-amarillo); }
+        .borde-rojo { border-color: var(--acento-rojo); } .text-rojo { color: var(--acento-rojo); }
+        .borde-azul { border-color: var(--acento-azul); } .text-azul { color: var(--acento-azul); }
+        .borde-naranja { border-color: var(--acento-naranja); } .text-naranja { color: var(--acento-naranja); }
+        .borde-celeste { border-color: var(--acento-celeste); } .text-celeste { color: var(--acento-celeste); }
 
-        /* GRILLA */
+        /* GRILLA DE PRODUCTOS */
         .grilla { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-        /* CARDS */
+        /* TARJETAS CON FOTO */
         .card { background: var(--bg-card); border: 1px solid var(--borde-card); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
         .caja-blanca { background: white; width: 100%; aspect-ratio: 1/1; display: flex; justify-content: center; align-items: center; padding: 8px; }
         .caja-blanca img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .info { padding: 12px 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .info h3 { font-size: 0.8rem; color: white; margin-bottom: 5px; line-height: 1.3; min-height: 32px; }
-        .fila-precio-btn { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
-        .precio { font-size: 1rem; font-weight: 800; }
         
-        .btn-copiar { background: #333; border: 1px solid #555; color: #ccc; width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
-        .btn-copiar:active { transform: scale(0.9); }
-        .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
-
-        /* Cards Texto */
+        /* TARJETAS SOLO TEXTO */
         .card-texto { background: #151515; border: 1px solid #333; border-radius: 12px; padding: 12px; position: relative; min-height: 100px; display: flex; flex-direction: column; justify-content: space-between; }
         .titulo-txt { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; line-height: 1.2; }
         .desc-txt { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
         .precio-txt { font-size: 1.1rem; font-weight: 800; }
         .btn-copiar-txt { position: absolute; bottom: 10px; right: 10px; background: transparent; padding: 0; width: 24px; height: 24px;}
 
+        /* TARJETA NEUMATICO */
         .card-neumatico { background: #151515; border: 1px solid #333; border-bottom: 3px solid var(--acento-verde); border-radius: 12px; padding: 12px; position: relative; }
         .titulo-neu { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; height: 35px; overflow: hidden;}
         .desc-neu { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
         .precio-neu { font-size: 1.1rem; font-weight: 800; color: var(--acento-verde); }
         .btn-copiar-neu { position: absolute; bottom: 10px; right: 10px; border-color: var(--acento-verde); color: var(--acento-verde); background: transparent; }
 
-        /* Banners */
-        .banner-tira {
-            position: relative; width: 100%; height: 130px;
-            border-radius: 15px; overflow: hidden; margin: 40px 0 20px 0;
-            border: 1px solid #333;
-        }
+        /* BOTONES */
+        .fila-precio-btn { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
+        .precio { font-size: 1rem; font-weight: 800; }
+        .btn-copiar { background: #333; border: 1px solid #555; color: #ccc; width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+        .btn-copiar:active { transform: scale(0.9); }
+        .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+        /* BANNERS */
+        .banner-tira { position: relative; width: 100%; height: 130px; border-radius: 15px; overflow: hidden; margin: 40px 0 20px 0; border: 1px solid #333; }
         .banner-tira img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-        .banner-texto {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.6); z-index: 10; padding: 10px; text-align: center;
-        }
+        .banner-texto { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 10; padding: 10px; text-align: center; }
         .banner-texto h2 { font-size: 1.8rem; color: white; text-shadow: 0 2px 10px black; margin-bottom: 5px; }
         .banner-desc { font-size: 0.9rem; color: #eee; background: rgba(0,0,0,0.5); padding: 4px 12px; border-radius: 20px; }
 
@@ -162,58 +153,22 @@
         .lista-servicios { list-style: none; padding: 0; margin: 0; text-align: left; }
         .lista-servicios li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: white; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .lista-servicios li:last-child { border-bottom: none; }
-        .bullet-serv { color: var(--acento-amarillo); margin-right: 10px; }
         .logo-servicios { width: 150px; height: 150px; object-fit: contain; opacity: 0.9; }
 
         /* --- FOOTER --- */
-        footer {
-            background: rgba(0,0,0,0.8); border-top: 2px solid var(--acento-rojo);
-            padding: 40px 20px 120px 20px; text-align: center; color: #aaa; font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
-        .horarios-footer {
-            margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center; line-height: 1.8; color: #eee;
-        }
+        footer { background: rgba(0,0,0,0.8); border-top: 2px solid var(--acento-rojo); padding: 40px 20px 120px 20px; text-align: center; color: #aaa; font-size: 0.9rem; backdrop-filter: blur(10px); }
+        .horarios-footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; line-height: 1.8; color: #eee; }
         .horarios-titulo { color: var(--acento-rojo); font-weight: bold; margin-bottom: 5px; display: block; }
-        .numeros-footer { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        
-        .btn-tel-footer { 
-            display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); 
-            padding: 10px 20px; border-radius: 10px; border: 1px solid var(--acento-rojo); color: white; text-decoration: none; font-size: 0.9rem; width: 100%; max-width: 300px; justify-content: space-between;
-        }
-        
-        /* Botón WhatsApp Footer */
-        .btn-ws-footer {
-            display: flex; align-items: center; gap: 10px; background: rgba(37, 211, 102, 0.15); 
-            padding: 10px 20px; border-radius: 10px; border: 1px solid var(--whatsapp-green); color: var(--whatsapp-green); text-decoration: none; font-size: 0.9rem; width: 100%; max-width: 300px; justify-content: center; font-weight: bold;
-            margin-top: 10px;
-        }
-        .btn-ws-footer:active { background: var(--whatsapp-green); color: black; }
+        .btn-ws-footer { display: flex; align-items: center; gap: 10px; background: rgba(37, 211, 102, 0.15); padding: 12px 25px; border-radius: 10px; border: 1px solid #25d366; color: #25d366; text-decoration: none; font-size: 1rem; width: fit-content; margin: 20px auto 0 auto; font-weight: bold; }
+        .btn-ws-footer:active { background: #25d366; color: black; }
 
-        /* --- MENÚ FLOTANTE (DERECHA) --- */
-        .flotante-container { 
-            position: fixed; bottom: 30px; right: 20px; z-index: 9999; 
-            display: flex; flex-direction: column-reverse; align-items: flex-end; 
-        }
-        .btn-menu-principal { 
-            width: 60px; height: 60px; border-radius: 15px; font-size: 24px; 
-            background: var(--acento-amarillo); border: none; cursor: pointer; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); color: black; 
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s ease;
-        }
+        /* --- MENÚ FLOTANTE (ABAJO DERECHA) --- */
+        .flotante-container { position: fixed; bottom: 15px; right: 15px; z-index: 9999; display: flex; flex-direction: column-reverse; align-items: flex-end; }
+        .btn-menu-principal { width: 60px; height: 60px; border-radius: 15px; font-size: 24px; background: var(--acento-amarillo); border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); color: black; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
         .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); }
-
-        .menu-opciones { 
-            margin-bottom: 15px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
-            background: rgba(0,0,0,0.95); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 180px; overflow: hidden;
-        }
+        .menu-opciones { margin-bottom: 15px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; background: rgba(0,0,0,0.95); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 180px; overflow: hidden; }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
-        .menu-opciones a { 
-            padding: 15px 20px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px;
-            border-bottom: 1px solid #333; font-size: 0.95rem; font-weight: 600;
-        }
+        .menu-opciones a { padding: 15px 20px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #333; font-size: 0.95rem; font-weight: 600; }
         .menu-opciones a:last-child { border-bottom: none; }
         .icon-menu { width: 20px; height: 20px; fill: var(--acento-amarillo); }
 
@@ -233,11 +188,21 @@
     <!-- HEADER -->
     <header class="hero-header">
         <div class="header-texto">
-            <span class="subtitulo-top">TALLER <span style="color:var(--acento-rojo)">•</span> GOMERÍA <span style="color:var(--acento-rojo)">•</span> LUBRICENTRO</span>
+            <span class="subtitulo-top">TALLER • GOMERÍA • LUBRICENTRO</span>
             <h1 class="titulo-principal">ULTIMA ESTACIÓN</h1>
             <div class="info-contacto-header panel-vidrio">
-                <div class="dato-contacto"><span class="icono">📍</span> Calle 3. Av. Papa Francisco Frente al CENAF N° 5</div>
-                <div class="dato-contacto"><span class="icono">🌍</span> Rincón de los Sauces, Neuquén</div>
+                <div class="dato-contacto">
+                    <span class="icono">📍</span> 
+                    <div class="texto-dato"><strong>Dirección</strong><span>Calle 3. Av. Papa Francisco, Frente al CENAF N° 5</span></div>
+                </div>
+                <div class="dato-contacto">
+                    <span class="icono">🌍</span> 
+                    <div class="texto-dato"><strong>Ubicación</strong><span>Rincón de los Sauces, Neuquén</span></div>
+                </div>
+                <div class="dato-contacto">
+                    <span class="icono">📞</span> 
+                    <div class="texto-dato"><strong>WhatsApp</strong><span>2995 942 834 / 299 471 6353</span></div>
+                </div>
             </div>
         </div>
         <div class="header-logo">
@@ -281,7 +246,21 @@
         </div>
     </section>
 
-    <!-- CÁMARAS DE MOTO (NARANJA) -->
+    <!-- REFRIGERACIÓN -->
+    <section class="contenedor-general" id="refrigeracion">
+        <div class="cabecera-simple-vidrio panel-vidrio borde-celeste">
+            <img src="LOGO BLANCO.png" class="logo-mini">
+            <div><h2 class="titulo-seccion text-celeste">REFRIGERACIÓN</h2><span class="mini-desc-seccion">Anticongelantes y Líquidos</span></div>
+        </div>
+        <div class="grilla">
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>Refrigerante Gulf Rojo</h3><div class="fila-precio-btn"><span class="precio text-celeste">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf Rojo // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>Refrigerante Gulf</h3><div class="fila-precio-btn"><span class="precio text-celeste">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>Refrigerante Gulf</h3><div class="fila-precio-btn"><span class="precio text-celeste">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>Lavaparabrisas</h3><div class="fila-precio-btn"><span class="precio text-celeste">$10.000</span><button class="btn-copiar" onclick="copiar('Lavaparabrisas // $10.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+        </div>
+    </section>
+
+    <!-- CÁMARAS DE MOTO -->
     <section class="contenedor-general" id="camaras">
         <div class="cabecera-simple-vidrio panel-vidrio borde-naranja">
             <img src="LOGO BLANCO.png" class="logo-mini">
@@ -302,7 +281,22 @@
         </div>
     </section>
 
-    <!-- ACEITES MOTOR (CON BANNER) -->
+    <!-- ACEITES DE MOTO (SECCIÓN NUEVA) -->
+    <section class="contenedor-general" id="aceites_moto">
+        <div class="cabecera-simple-vidrio panel-vidrio borde-naranja">
+            <img src="LOGO BLANCO.png" class="logo-mini">
+            <div><h2 class="titulo-seccion text-naranja">ACEITES DE MOTO</h2><span class="mini-desc-seccion">2T y 4T</span></div>
+        </div>
+        <div class="grilla">
+             <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>Motul 3000 20W-50</h3><div class="fila-precio-btn"><span class="precio text-naranja">$24.000</span><button class="btn-copiar" onclick="copiar('Motul 3000 20W-50 // $24.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>Motul 5000 20W-50</h3><div class="fila-precio-btn"><span class="precio text-naranja">$28.000</span><button class="btn-copiar" onclick="copiar('Motul 5000 20W-50 // $28.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>Castrol Actevo 20W-50</h3><div class="fila-precio-btn"><span class="precio text-naranja">$15.000</span><button class="btn-copiar" onclick="copiar('Castrol Actevo 20W-50 // $15.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>Elf Moto 4 Cruise 20W-50</h3><div class="fila-precio-btn"><span class="precio text-naranja">$12.000</span><button class="btn-copiar" onclick="copiar('Elf Moto 4 Cruise 20W-50 // $12.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>Elaion Moto 4T 20W-50</h3><div class="fila-precio-btn"><span class="precio text-naranja">$12.000</span><button class="btn-copiar" onclick="copiar('Elaion Moto 4T 20W-50 // $12.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+        </div>
+    </section>
+
+    <!-- ACEITES DE MOTOR (CON BANNER) -->
     <section class="contenedor-general" id="aceites">
         <div class="banner-tira" style="border-color: var(--acento-amarillo);">
             <img src="Banners/BANNER-ACEITES-MINIS.png" alt="Aceites">
@@ -324,7 +318,7 @@
         </div>
     </section>
 
-    <!-- ATF ACEITES (CON BANNER Y PRECIOS REALES) -->
+    <!-- ATF ACEITES (CON BANNER) -->
     <section class="contenedor-general" id="atf">
         <div class="banner-tira" style="border-color: var(--acento-rojo);">
             <img src="Banners/BANNER-ACEITE-ATF.png" alt="ATF">
@@ -334,18 +328,9 @@
             </div>
         </div>
         <div class="grilla">
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-1.png" alt="1"></div><div class="info"><h3>Refrigerante Gulf Rojo</h3><div class="fila-precio-btn"><span class="precio text-rojo">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf Rojo // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-2.png" alt="2"></div><div class="info"><h3>Refrigerante Gulf</h3><div class="fila-precio-btn"><span class="precio text-rojo">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-3.png" alt="3"></div><div class="info"><h3>Refrigerante Gulf</h3><div class="fila-precio-btn"><span class="precio text-rojo">$13.000</span><button class="btn-copiar" onclick="copiar('Refrigerante Gulf // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-4.png" alt="4"></div><div class="info"><h3>Lavaparabrisas</h3><div class="fila-precio-btn"><span class="precio text-rojo">$10.000</span><button class="btn-copiar" onclick="copiar('Lavaparabrisas // $10.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-5.png" alt="5"></div><div class="info"><h3>Líquido Dirección ATF</h3><div class="fila-precio-btn"><span class="precio text-rojo">$13.000</span><button class="btn-copiar" onclick="copiar('Líquido Dirección ATF // $13.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF D-III YPF</h3><div class="fila-precio-btn"><span class="precio text-rojo">$15.000</span><button class="btn-copiar" onclick="copiar('ATF D-III YPF // $15.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-7.png" alt="7"></div><div class="info"><h3>ATF 7</h3><div class="fila-precio-btn"><span class="precio text-rojo">$24.000</span><button class="btn-copiar" onclick="copiar('ATF 7 // $24.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-8.png" alt="8"></div><div class="info"><h3>ATF 8</h3><div class="fila-precio-btn"><span class="precio text-rojo">$28.000</span><button class="btn-copiar" onclick="copiar('ATF 8 // $28.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-9.png" alt="9"></div><div class="info"><h3>ATF 9</h3><div class="fila-precio-btn"><span class="precio text-rojo">$15.000</span><button class="btn-copiar" onclick="copiar('ATF 9 // $15.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
+            <div class="card"><div class="caja-blanca"><img src="AST/ATF-6.png" alt="6"></div><div class="info"><h3>ATF D-III YPF Dexron 3</h3><div class="fila-precio-btn"><span class="precio text-rojo">$15.000</span><button class="btn-copiar" onclick="copiar('ATF D-III YPF // $15.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
             <div class="card"><div class="caja-blanca"><img src="AST/ATF-10.png" alt="10"></div><div class="info"><h3>ATF Dexron 2 FERCOL</h3><div class="fila-precio-btn"><span class="precio text-rojo">$16.000</span><button class="btn-copiar" onclick="copiar('ATF Dexron 2 FERCOL // $16.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-11.png" alt="11"></div><div class="info"><h3>Aceite de Moto</h3><div class="fila-precio-btn"><span class="precio text-rojo">$12.000</span><button class="btn-copiar" onclick="copiar('Aceite de Moto // $12.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
-            <div class="card"><div class="caja-blanca"><img src="AST/ATF-12.png" alt="12"></div><div class="info"><h3>Aceite de Moto</h3><div class="fila-precio-btn"><span class="precio text-rojo">$12.000</span><button class="btn-copiar" onclick="copiar('Aceite de Moto // $12.000')"><svg class="icon-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button></div></div></div>
         </div>
     </section>
 
@@ -480,7 +465,7 @@
         <p style="margin-top: 20px; opacity: 0.6; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
     </footer>
 
-    <!-- MENÚ FLOTANTE -->
+    <!-- MENÚ FLOTANTE (DERECHA) -->
     <div class="flotante-container">
         <div class="menu-opciones" id="menuDesplegable">
             <a href="#inicio" onclick="toggleMenu()">
