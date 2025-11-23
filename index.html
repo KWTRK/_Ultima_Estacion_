@@ -36,7 +36,7 @@
             margin: 0; padding: 0;
             overflow-x: hidden; position: relative;
             min-height: 100vh;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
         }
 
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
@@ -191,16 +191,18 @@
         }
         .btn-ws-footer:active { background: var(--whatsapp-green); color: black; }
 
-        /* --- MENÚ FLOTANTE (PEGADO ABAJO A LA DERECHA) --- */
+        /* --- MENÚ FLOTANTE (PEGADO ABAJO) --- */
         .flotante-container { 
             position: fixed; 
-            bottom: 10px; /* PEGADO ABAJO */
-            right: 10px;  /* PEGADO DERECHA */
-            z-index: 1; 
+            bottom: 0; /* PEGADO ABAJO */
+            right: 0;  /* PEGADO DERECHA */
+            z-index: 9999; 
             display: flex; 
-            flex-direction: column-reverse; /* IMPORTANTE: El botón abajo, el menú crece hacia arriba */
+            flex-direction: column-reverse; 
             align-items: flex-end; 
+            padding: 20px; /* Un pequeño margen para que no toque el borde de la pantalla */
         }
+        
         .btn-menu-principal { 
             width: 60px; height: 60px; border-radius: 15px; font-size: 24px; 
             background: var(--acento-amarillo); border: none; cursor: pointer; 
@@ -208,6 +210,7 @@
             display: flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
         }
+        /* Estado Activo (Rojo) */
         .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); }
 
         .menu-opciones { 
@@ -485,8 +488,8 @@
         <p style="margin-top: 20px; opacity: 0.6; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
     </footer>
 
-    <!-- MENÚ FLOTANTE -->
-    <div class="flotante-container">
+    <!-- MENÚ FLOTANTE (PEGADO ABAJO A LA DERECHA) -->
+    <div class="flotante-container"> 
         <div class="menu-opciones" id="menuDesplegable">
             <a href="#inicio" onclick="toggleMenu()">
                 <svg class="icon-menu" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -526,9 +529,10 @@
             </a>
              <a href="#footer" onclick="toggleMenu()">
                 <svg class="icon-menu" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                ℹ️ Info
+                Info
             </a>
         </div>
+        <!-- BOTÓN FLOTANTE -->
         <button class="btn-menu-principal" onclick="toggleMenu()">☰</button>
     </div>
 
@@ -547,27 +551,31 @@
             }
         }
 
-        // FUNCIÓN DE COPIAR MEJORADA
+        // FUNCIÓN DE COPIAR SEGURA Y COMPATIBLE
         function copiar(texto) {
+            // 1. Crear un textarea temporal fuera de la pantalla
             const el = document.createElement('textarea');
             el.value = texto;
-            el.setAttribute('readonly', '');
+            el.setAttribute('readonly', ''); // Evita que el teclado aparezca en móviles
             el.style.position = 'absolute';
             el.style.left = '-9999px';
             document.body.appendChild(el);
-            el.select();
-            el.setSelectionRange(0, 99999); /* Para móviles */
             
+            // 2. Seleccionar el texto
+            el.select();
+            el.setSelectionRange(0, 99999); // Para compatibilidad extra con móviles
+            
+            // 3. Intentar copiar
             try {
-                var successful = document.execCommand('copy');
+                document.execCommand('copy');
                 
-                // Animación
+                // 4. Feedback visual (Botón verde temporal)
                 const btn = document.activeElement.closest('.btn-copiar');
                 if(btn) {
                     const originalHTML = btn.innerHTML;
                     btn.style.backgroundColor = "#ffffff";
                     btn.style.color = "#000";
-                    btn.innerHTML = '<svg class="icon-copy" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                    btn.innerHTML = '✅'; // Check
                     
                     setTimeout(() => { 
                         btn.style.backgroundColor = ""; 
@@ -577,8 +585,10 @@
                 }
             } catch (err) {
                 console.error('Error al copiar', err);
+                alert('No se pudo copiar automáticamente. Por favor selecciona y copia manualmente.');
             }
             
+            // 5. Limpieza
             document.body.removeChild(el);
         }
     </script>
