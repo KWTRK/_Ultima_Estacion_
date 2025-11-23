@@ -65,7 +65,7 @@
         .titulo-principal { font-size: 2.2rem; line-height: 1; margin-bottom: 15px; color: #ffffff; }
         
         .info-contacto-header {
-            display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: #ddd;
+            display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #ddd;
             border-left: 3px solid var(--acento-rojo); padding-left: 15px;
         }
         .dato-contacto { display: flex; align-items: flex-start; gap: 8px; }
@@ -125,13 +125,22 @@
         .fila-precio-btn { display: flex; justify-content: space-between; align-items: center; margin-top: 5px; }
         .precio { font-size: 1rem; font-weight: 800; }
         
-        .btn-copiar { background: #333; border: 1px solid #555; color: #ccc; width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+        /* ESTILOS BOTÓN COPIAR */
+        .btn-copiar { 
+            background: #222; border: 1px solid #444; color: #ccc; 
+            width: 30px; height: 30px; border-radius: 6px; 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; transition: 0.2s; 
+            /* IMPORTANTE: Esto permite clicks */
+            pointer-events: auto;
+            position: relative; z-index: 50;
+        }
         .btn-copiar:active { transform: scale(0.9); }
         .icon-copy { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
 
         /* Cards Texto */
         .card-texto { background: #151515; border: 1px solid #333; border-radius: 12px; padding: 12px; position: relative; min-height: 100px; display: flex; flex-direction: column; justify-content: space-between; }
-        .titulo-txt { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; line-height: 1.2; }
+        .titulo-txt { font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 5px; line-height: 1.2; padding-right: 10px; }
         .desc-txt { font-size: 0.7rem; color: #888; margin-bottom: 8px; }
         .precio-txt { font-size: 1.1rem; font-weight: 800; }
         .btn-copiar-txt { position: absolute; bottom: 10px; right: 10px; background: transparent; padding: 0; width: 24px; height: 24px;}
@@ -191,28 +200,40 @@
         }
         .btn-ws-footer:active { background: var(--whatsapp-green); color: black; }
 
-        /* --- MENÚ FLOTANTE (PEGADO ABAJO A LA DERECHA) --- */
+        /* --- MENÚ FLOTANTE (ARREGLADO) --- */
         .flotante-container { 
-            position: fixed; 
-            bottom: 0; /* LITERALMENTE PEGADO ABAJO */
-            right: 0;  /* LITERALMENTE PEGADO A LA DERECHA */
-            z-index: 9999; 
-            display: flex; 
-            flex-direction: column-reverse; /* El botón abajo, el menú crece hacia arriba */
-            align-items: flex-end; 
-            padding: 5px; /* Mínimo padding para no tocar el borde de pantalla */
+            position: fixed; bottom: 20px; right: 20px; z-index: 9999; 
+            display: flex; flex-direction: column-reverse; align-items: flex-end;
+            /* CRUCIAL: Permite hacer clic en lo que está "debajo" del área transparente */
+            pointer-events: none; 
         }
+        
+        /* Elementos dentro del contenedor que SI reciben clicks */
+        .btn-menu-principal, .menu-opciones {
+            pointer-events: auto;
+        }
+
+        /* Animación de colores del botón */
+        @keyframes rainbow { 
+            0% { background: var(--acento-amarillo); }
+            25% { background: var(--acento-rojo); }
+            50% { background: var(--acento-violeta); }
+            75% { background: var(--acento-azul); }
+            100% { background: var(--acento-verde); }
+        }
+
         .btn-menu-principal { 
             width: 60px; height: 60px; border-radius: 15px; font-size: 24px; 
             background: var(--acento-amarillo); border: none; cursor: pointer; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.5); color: black; 
             display: flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
+            animation: rainbow 10s infinite alternate; /* Animación de color */
         }
-        .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); }
+        .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); animation: none; }
 
         .menu-opciones { 
-            margin-bottom: 10px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
+            margin-bottom: 15px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
             background: rgba(0,0,0,0.95); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 180px; overflow: hidden;
         }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
@@ -358,7 +379,7 @@
     <section class="contenedor-general" id="filtros">
         <div class="cabecera-simple-vidrio panel-vidrio borde-azul">
             <img src="LOGO BLANCO.png" class="logo-mini">
-            <div><h2 class="titulo-seccion text-azul">KITS DE FILTROS</h2><span class="mini-desc-seccion">Kits completos</span></div>
+            <div><h2 class="titulo-seccion text-azul">KITS DE FILTROS</h2></div>
         </div>
         <div class="grilla">
             <!-- 1 -->
@@ -486,8 +507,8 @@
         <p style="margin-top: 20px; opacity: 0.6; font-size: 0.7rem;">© 2024 Todos los derechos reservados</p>
     </footer>
 
-    <!-- MENÚ FLOTANTE (PEGADO ABAJO A LA DERECHA) -->
-    <div class="flotante-container"> 
+    <!-- MENÚ FLOTANTE -->
+    <div class="flotante-container">
         <div class="menu-opciones" id="menuDesplegable">
             <a href="#inicio" onclick="toggleMenu()">
                 <svg class="icon-menu" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -527,10 +548,9 @@
             </a>
              <a href="#footer" onclick="toggleMenu()">
                 <svg class="icon-menu" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                Info
+                ℹ️ Info
             </a>
         </div>
-        <!-- BOTÓN FLOTANTE -->
         <button class="btn-menu-principal" onclick="toggleMenu()">☰</button>
     </div>
 
@@ -549,7 +569,7 @@
             }
         }
 
-        // FUNCIÓN DE COPIAR MEJORADA
+        // FUNCIÓN DE COPIAR MEJORADA (INFALIBLE)
         function copiar(texto) {
             // 1. Crear un textarea temporal fuera de la pantalla
             const el = document.createElement('textarea');
