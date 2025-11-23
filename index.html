@@ -23,12 +23,12 @@
         </div>
     </div>
 
-    <!-- ALINEACIÓN (Imagen pequeña arriba de la ventana) -->
+    <!-- ALINEACIÓN -->
     <div id="sec-alineacion" class="max-w-2xl mx-auto mb-16">
         <div class="bg-[#1a1a1a] rounded-xl border border-gray-800 p-6 shadow-xl">
-            <!-- Imagen Pequeña -->
-            <div class="mb-4 rounded-lg overflow-hidden border border-gray-800 shadow-lg h-40">
-                <img src="alineacion.jpg" onclick="zoom(this.src)" class="w-full h-full object-cover cursor-zoom-in" onerror="this.src='https://placehold.co/600x300/111/yellow?text=FOTO+ALINEACION'">
+            <!-- Imagen Pequeña (Ruta Corregida) -->
+            <div class="mb-4 rounded-lg overflow-hidden border border-gray-800 shadow-lg h-40 bg-gray-900 flex items-center justify-center">
+                <img src="Alineamiento%20y%20balanceo/alineacion.jpg" onclick="zoom(this.src)" class="h-full w-full object-cover cursor-zoom-in" onerror="this.src='https://placehold.co/600x300/111/yellow?text=FOTO+ALINEACION'">
             </div>
             <h2 class="text-center text-xl font-bold text-yellow-500 mb-4 uppercase">Alineación y Balanceo</h2>
             <div class="space-y-4 text-sm mt-4">
@@ -47,8 +47,8 @@
         <div class="bg-[#111] border border-gray-800 rounded-3xl p-8 mb-12 shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 w-32 h-32 bg-gray-800 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
             <div class="relative z-10 text-center">
-                <!-- LOGO CORREGIDO (Nombre exacto de la imagen) -->
-                <div class="flex justify-center mb-6"><img src="LOGO BLANCO AHI ESTá.png" class="w-48 h-48 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" onerror="this.src='https://placehold.co/500x500/transparent/white?text=LOGO'"></div>
+                <!-- LOGO CORREGIDO -->
+                <div class="flex justify-center mb-6"><img src="LOGO BLANCO.png" class="w-48 h-48 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" onerror="this.src='https://placehold.co/500x500/transparent/white?text=LOGO'"></div>
                 <h2 class="text-3xl font-black text-white mb-8 tracking-wide">SERVICIOS</h2>
                 <ul id="lista-servicios" class="text-left space-y-3 max-w-xs mx-auto text-sm md:text-base font-bold text-gray-300"></ul>
             </div>
@@ -195,7 +195,6 @@
             ? `<div class="bg-[#111] rounded-xl overflow-hidden border border-gray-800 shadow-lg flex flex-col"><div class="h-40 bg-gray-800 p-2 flex justify-center"><img src="${f}/${i.img}.png" onclick="zoom(this.src)" class="h-full object-contain cursor-zoom-in"></div><div class="p-4 flex flex-col flex-grow"><div class="bg-gray-800 border-l-4 border-${c}-500 p-2 mb-2"><h3 class="font-bold text-white text-xs">${i.t}</h3></div><p class="text-${c}-500 font-black text-xl text-right mt-auto">${i.p}</p></div></div>`
             : `<div class="bg-[#151515] border-b-2 border-${c}-500 p-5 rounded-lg shadow-lg hover:bg-[#1a1a1a]"><h3 class="font-bold text-white text-base leading-tight">${i.t}</h3><p class="text-xs text-gray-500 mt-1 mb-3">${i.d}</p><p class="text-${c}-400 font-black text-2xl">${i.p}</p></div>`;
 
-        // Generar Secciones e IDs
         document.getElementById('app').innerHTML = SECCIONES.map((s, idx) => `
             <div id="sec-${idx}" class="max-w-2xl mx-auto mb-16">
                 <div class="border-2 border-${s.c}-500 rounded-xl p-4 mb-8 text-center bg-${s.c}-900/10 shadow-lg">
@@ -205,7 +204,7 @@
                 <div class="grid grid-cols-${s.f ? '2' : '1 md:grid-cols-2'} gap-4">${s.l.map(item => tarjeta(item, s.c, s.f)).join('')}</div>
             </div>`).join('');
 
-        // Generar Links del Menú
+        // LINKS MENU
         const menuHTML = `
             <a href="#sec-alineacion" onclick="toggleMenu()" class="block px-3 py-2 hover:bg-yellow-500/20 rounded text-sm text-yellow-500 font-bold">Alineación</a>
             ${SECCIONES.map((s, idx) => `<a href="#sec-${idx}" onclick="toggleMenu()" class="block px-3 py-2 hover:bg-gray-800 rounded text-sm text-gray-300 hover:text-${s.c}-400">${s.t}</a>`).join('')}
@@ -216,20 +215,10 @@
         // FUNCIONES
         function copiar(btn, num) { navigator.clipboard.writeText(num); let t=btn.innerText; btn.innerText="¡COPIADO!"; setTimeout(()=>btn.innerText=t,2000); }
         function zoom(src) { document.getElementById('modalImg').src = src; document.getElementById('modal').classList.remove('hidden'); }
-        
         function toggleMenu() {
             const menu = document.getElementById('menu-nav');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                setTimeout(() => { // Pequeño delay para que la transición funcione
-                    menu.classList.remove('opacity-0', 'scale-90');
-                }, 10);
-            } else {
-                menu.classList.add('opacity-0', 'scale-90');
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                }, 200); // Esperar a que termine la animación para ocultar
-            }
+            if (menu.classList.contains('hidden')) { menu.classList.remove('hidden'); setTimeout(() => menu.classList.remove('opacity-0', 'scale-90'), 10); } 
+            else { menu.classList.add('opacity-0', 'scale-90'); setTimeout(() => menu.classList.add('hidden'), 200); }
         }
     </script>
 </body>
