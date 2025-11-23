@@ -65,7 +65,7 @@
         .titulo-principal { font-size: 2.2rem; line-height: 1; margin-bottom: 15px; color: #ffffff; }
         
         .info-contacto-header {
-            display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #ddd;
+            display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: #ddd;
             border-left: 3px solid var(--acento-rojo); padding-left: 15px;
         }
         .dato-contacto { display: flex; align-items: flex-start; gap: 8px; }
@@ -191,18 +191,17 @@
         }
         .btn-ws-footer:active { background: var(--whatsapp-green); color: black; }
 
-        /* --- MENÚ FLOTANTE (PEGADO ABAJO) --- */
+        /* --- MENÚ FLOTANTE (PEGADO ABAJO A LA DERECHA) --- */
         .flotante-container { 
             position: fixed; 
-            bottom: 0; /* PEGADO ABAJO */
-            right: 0;  /* PEGADO DERECHA */
+            bottom: 0; /* LITERALMENTE PEGADO ABAJO */
+            right: 0;  /* LITERALMENTE PEGADO A LA DERECHA */
             z-index: 9999; 
             display: flex; 
-            flex-direction: column-reverse; 
+            flex-direction: column-reverse; /* El botón abajo, el menú crece hacia arriba */
             align-items: flex-end; 
-            padding: 20px; /* Un pequeño margen para que no toque el borde de la pantalla */
+            padding: 5px; /* Mínimo padding para no tocar el borde de pantalla */
         }
-        
         .btn-menu-principal { 
             width: 60px; height: 60px; border-radius: 15px; font-size: 24px; 
             background: var(--acento-amarillo); border: none; cursor: pointer; 
@@ -210,11 +209,10 @@
             display: flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
         }
-        /* Estado Activo (Rojo) */
         .btn-menu-principal.abierto { background: var(--acento-rojo); color: white; transform: rotate(90deg); }
 
         .menu-opciones { 
-            margin-bottom: 15px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
+            margin-bottom: 10px; transform: translateY(20px) scale(0.8); opacity: 0; pointer-events: none; transition: 0.3s; 
             background: rgba(0,0,0,0.95); border: 1px solid var(--acento-amarillo); border-radius: 15px; min-width: 180px; overflow: hidden;
         }
         .menu-opciones.activo { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
@@ -551,7 +549,7 @@
             }
         }
 
-        // FUNCIÓN DE COPIAR SEGURA Y COMPATIBLE
+        // FUNCIÓN DE COPIAR MEJORADA
         function copiar(texto) {
             // 1. Crear un textarea temporal fuera de la pantalla
             const el = document.createElement('textarea');
